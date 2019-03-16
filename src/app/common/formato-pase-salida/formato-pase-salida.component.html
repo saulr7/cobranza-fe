@@ -1,0 +1,104 @@
+<app-loading [mostrar]="cargando">
+</app-loading>
+
+<div class="container" id="formato-pase-salida2" style="width: 780px;">
+  <div class="row">
+    <div class="col col-sm-12 col-md-10 offset-md-1">
+
+      <div class="row pt-2 mt-2">
+        <div class="col col-sm-12 col-md-10 offset-md-1 d-flex justify-content-end">
+           <span> RGH-163 V.1 </span>
+        </div>
+      </div>
+
+      <div class="row">
+          <div class="col col-sm-12 col-md-10 offset-md-1 d-flex justify-content-center">
+            <h5>
+              <strong>  <i> <u>  GRUPO FINANCIERO DEL PAIS </u> </i>
+              </strong>
+            </h5>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col col-sm-12 col-md-10 offset-md-1 d-flex justify-content-center">
+            <h6> Gestión y Desarrollo Humano</h6>
+          </div>
+      </div>
+
+      
+      <div class="d-flex ">
+          <div class="p-2"><h6> <strong> NOMBRE DEL EMPLEADO: </strong> </h6></div>
+          <div class="p-2 flex-grow-1 subRayado" >{{solicitud.UsuarioSolicitante}}</div>
+      </div>
+
+
+      <div class="d-flex ">
+          <div class="p-2"><h6> <strong> PUESTO: </strong> </h6></div>
+          <div class="p-2 flex-grow-1 subRayado" >{{solicitud.PuestoSolicitante}} </div>
+      </div>
+
+      <div class="d-flex ">
+          <div class="p-2"><h6> <strong> DEPARTAMENTO: </strong> </h6></div>
+          <div class="p-2 flex-grow-1 subRayado" >{{solicitud.AreaSolicitante}}</div>
+      </div>
+
+        <div class="d-flex pt-2">
+            <div class="p-2 flex-fill">
+              Se le concede permiso para poder salir del edificio y ausentarse de sus labores por motivo de:
+            </div>
+        </div>
+
+        <div class="d-flex">
+            <div class="p-2 flex-grow-1 subRayado" >{{solicitud.MotivoSalida}} <span *ngIf="solicitud.Observaciones">: {{solicitud.Observaciones}} </span></div>
+        </div>
+  
+        <div class="d-flex pt-2">
+            <div class="p-2 flex-fill ">Hora de salida:</div>
+            <div class="p-2 flex-fill subRayado">{{solicitud.HoraSalidaMarca | date:'mediumTime'}}</div>
+            <div class="p-2 flex-fill "></div>
+            <div class="p-2 flex-fill ">Hora de regreso:</div>
+            <div *ngIf="solicitud.Regresara" class="p-2 flex-fill subRayado"> {{solicitud.HoraEntradaMarca | date:'mediumTime'}} </div>
+            <div *ngIf="!solicitud.Regresara" class="p-2 flex-fill subRayado">  <h6>No Regresa </h6>   </div>
+        </div>
+ 
+        <div class="d-flex pt-2">
+            <div class="p-2 "> <strong>  FECHA: </strong></div>
+            <div class="p-2 subRayado " > {{solicitud.FechaCreado | date:'shortDate'}}  </div>
+            <div class="p-2 flex-fill "></div>
+        </div>        
+
+        <div class="d-flex flex-column">
+            <div class="p-2">
+                <div class="d-flex ">
+                  <div class="p-2 flex-fill text-center subRayado" > 
+                      <h6 class="text-center">{{solicitud.UsuarioSolicitante}}</h6>
+                     <span class="text-center"> {{solicitud.FechaCreado | date:'mediumTime'}} </span> 
+                  </div>
+                  <div class="p-2 flex-fill "></div>
+                  <div class="p-2 flex-fill text-center subRayado" >
+                      <h6 class="text-center" *ngIf="mostrarQuienAutoriza" > {{solicitud.UsuarioAutoriza}}</h6>
+                      <span class="text-center" *ngIf="mostrarQuienAutoriza" > {{solicitud.HoraAtendida | date:'mediumTime'}} </span> 
+                  </div>
+                </div>
+            </div>
+            <div class="p-2">
+                <div class="d-flex ">
+                  <div class="p-2 flex-fill " > <strong> FIRMA DEL EMPLEADO </strong> </div>
+                  <div class="p-2 flex-fill "></div>
+                  <div class="p-2 flex-fill text-right" > <strong> FIRMA JEFE INMEDIATO </strong> </div>
+                </div>
+            </div>            
+        </div>
+
+        <div class="row justify-content-end" *ngIf="mostrarBtnImprimir">
+          <div class="col">
+              <button class="btn btn-success" id="btnImprimir" (click)="imprimir()">
+                 Generar PDF
+              </button>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>

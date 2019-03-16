@@ -1,0 +1,147 @@
+
+
+<app-titulo [titulo]="Titulo">
+</app-titulo> 
+
+<div class="container">
+
+  <div *ngIf="!esAdministradorArea" class="row justify-content-center">
+      <div class="col-10 col-md-6 col-lg-4 flex-column ">
+          <h5 class="text-center">Área: </h5>
+          <select class="custom-select mt-3" [(ngModel)]="areaSelected" (ngModelChange)="cambio_area()" >
+              <option value="-1">Seleccionar área</option>
+              <option [value]="area.Id"  *ngFor="let area of areas; let i = index">{{area.Descripcion}}</option>
+          </select>
+      </div>  
+  </div>
+  
+  <app-loading [mostrar]="cargandoAreas">
+  </app-loading>
+  
+
+  <div *ngIf="hayDatosParaMostrar" class="row justify-content-center  p-1">
+      <div class="col-10 col-md-4 justify-content-center d-flex ">
+          <input class="form-control form-control-md" type="text" [(ngModel)]="txtNombre" placeholder="Nombre" (keyup)="filtrar_datos()">
+      </div>
+  </div>
+
+  <div *ngIf="hayDatosParaMostrar" class="row justify-content-center ">
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="chkSoloAprueban" (change)="filtrar_datos()" [(ngModel)]="chkSoloAprueban" >
+        <label class="custom-control-label" for="chkSoloAprueban">Ver solo usuarios aprueban</label>
+    </div>
+  </div>
+
+  <div *ngIf="hayDatosParaMostrar && !esAdministradorArea" class="row justify-content-center ">
+    <div class="col col-10 col-md-4">
+      <select class="custom-select mt-3" [(ngModel)]="perfiFilter" (ngModelChange)="filtrar_datos()" >
+        <option value="-1" > Perfil </option>
+        <option [value]="perfil.Id"  *ngFor="let perfil of perfiles; let i = index">{{perfil.Descripcion}}</option>
+      </select>
+    </div>
+  </div>
+
+  <app-loading [mostrar]="cargandoColaboradores">
+    </app-loading>
+  
+  <div *ngIf="hayDatosParaMostrar" class="row justify-content-center">
+    <div class="col-12 col-md-12 col-lg-11">
+
+      <div class="row ">
+            <div class="col-3 col-md-1 ">
+                <strong>
+                  Código
+                </strong> 
+            </div>
+            <div class="col-3 col-md-4">
+                <strong>
+                  Nombre
+                </strong>  
+            </div>
+            <div class="col-md-3 d-none d-md-block">
+              <strong>
+                Puesto
+              </strong> 
+            </div>
+            <div *ngIf="!esAdministradorArea" class="col-3 col-md-1">
+              <strong>
+                Activo
+              </strong>  
+            </div>    
+            <div class="col-3 col-md-1 ">
+                <strong class="text-center">
+                    Aprueba
+                </strong>                 
+            </div> 
+            <div *ngIf="!esAdministradorArea" class="col-3 col-md-1 ">
+                <strong class="text-center">
+                    Perfil
+                </strong> 
+            </div>                                    
+      </div>
+
+
+    <div class="row pt-2 pb-2 " [ngClass]="{'bg-light': !(i % 2) }" *ngFor="let empleado of empleados; let i = index">
+          <div class="col-3 col-md-1">
+                <h6 class="my-auto">
+                    {{empleado.Id}}
+                </h6>
+          </div>
+          <div class="col-3 col-md-4">
+                <h6 class="align-middle">
+                  {{empleado.Nombre}}
+                </h6>
+          </div>
+          <div class=" col-md-3 d-none d-md-block">
+                <h6 class="my-auto">
+                  {{empleado.Puesto}}
+                </h6>
+          </div>                
+          <div *ngIf="!esAdministradorArea" class="col-3 col-md-1 align-middle">
+              <button *ngIf="empleado.Activo" class="btn btn-info" (click)="toggle_habilitar_colaborador(empleado.Id, false )" >
+                <i class="fa fa-check"></i>
+              </button>  
+              <button *ngIf="!empleado.Activo" class="btn btn-dark" (click)="toggle_habilitar_colaborador(empleado.Id, true)">
+                  <i class="fa fa-times"></i>
+              </button>                    
+          </div>
+          <div  class="col-3 col-md-1">
+                <button *ngIf="empleado.ApuebaPaseSalida" class="btn btn-info"  (click)="toggle_aprueba_colaborador(empleado.Id, false)" >
+                    <i class="fa fa-check"></i>
+                </button>  
+                <button *ngIf="!empleado.ApuebaPaseSalida" class="btn btn-dark" (click)="toggle_aprueba_colaborador(empleado.Id, true)">
+                    <i class="fa fa-times"></i>
+                </button>  
+          </div> 
+          <div *ngIf="!esAdministradorArea" class="col-12 col-md-2 d-flex justify-content-center">
+            <div *ngIf="!empleado.Editar">
+              <h6 class="text-center">{{empleado.Perfil}}
+                  <button *ngIf="empleado.Id != empleadoCodigo" class="btn btn-link" (click)="empleado.Editar = true"> 
+                      <i class="fa fa-edit"></i>  
+                    </button>
+              </h6>
+            </div>  
+            <div  *ngIf="empleado.Editar">
+                <select class="custom-select mt-3" [(ngModel)]="perfilSelected"  >
+                    <option value="-1">Perfil</option>
+                    <option [value]="perfil.Id"  *ngFor="let perfil of perfiles; let i = index">{{perfil.Descripcion}}</option>
+                </select>
+
+                <button class="btn btn-danger p-1 m-1" (click)="empleado.Editar = false"> 
+                    Cancelar
+                  </button>
+                  <button class="btn btn-success p-1 m-1" (click)="actualiza_perfil(empleado)"> 
+                      Actualizar
+                  </button>
+            </div>
+          </div>            
+    </div>
+
+                      
+    </div>
+  </div>
+</div>
+
+
+
+  

@@ -1,0 +1,85 @@
+
+
+<app-titulo [titulo]="Titulo">
+</app-titulo> 
+
+<div class="container">
+
+   
+
+  <div *ngIf="hayDatosParaMostrar" class="row justify-content-center  p-1">
+      <div class="col-10 col-md-4 justify-content-center d-flex ">
+          <input class="form-control form-control-md" type="text" [(ngModel)]="txtNombre" placeholder="Nombre" (keyup)="filtrar_datos()">
+      </div>
+  </div>
+
+  <div *ngIf="hayDatosParaMostrar" class="row justify-content-center ">
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="chkSoloAprueban" (change)="filtrar_datos()" [(ngModel)]="chkSoloAprueban" >
+        <label class="custom-control-label" for="chkSoloAprueban">Ver solo usuarios aprueban</label>
+    </div>
+  </div>
+
+
+  <app-loading [mostrar]="cargandoColaboradores">
+    </app-loading>
+  
+  <div *ngIf="hayDatosParaMostrar" class="row justify-content-center">
+    <div class="col-12 col-md-12 col-lg-11">
+
+      <div class="row ">
+            <div class="col-3 col-md-1 ">
+                <strong>
+                  Código
+                </strong> 
+            </div>
+            <div class="col-4 col-md-5">
+                <strong>
+                  Nombre
+                </strong>  
+            </div>
+            <div class="col-md-4 d-none d-md-block">
+              <strong>
+                Puesto
+              </strong> 
+            </div>   
+            <div class="col-4 col-md-2">
+                <strong class="text-center">
+                    Aprueba
+                </strong>                 
+            </div>                                  
+      </div>
+
+      <div class="row pt-2 pb-2 " [ngClass]="{'bg-light': !(i % 2) }" *ngFor="let empleado of empleados; let i = index">
+          <div class="col-3 col-md-1">
+                <h6 class="my-auto">
+                    {{empleado.Id}}
+                </h6>
+          </div>
+          <div class="col-4 col-md-5">
+                <h6 class="align-middle">
+                  {{empleado.Nombre}}
+                </h6>
+          </div>
+          <div class=" col-md-4 d-none d-md-block">
+                <h6 class="my-auto">
+                  {{empleado.Puesto}}
+                </h6>
+          </div>                
+          <div  class="col-4 col-md-2">
+                <button *ngIf="empleado.ApuebaPaseSalida" class="btn btn-info"  (click)="toggle_aprueba_colaborador(empleado.Id, false)" >
+                    <i class="fa fa-check"></i>
+                </button>  
+                <button *ngIf="!empleado.ApuebaPaseSalida" class="btn btn-dark" (click)="toggle_aprueba_colaborador(empleado.Id, true)">
+                    <i class="fa fa-times"></i>
+                </button>  
+          </div> 
+      </div>
+                      
+    </div>
+  </div>
+</div>
+
+
+
+  

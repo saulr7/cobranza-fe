@@ -1,0 +1,236 @@
+
+<app-titulo [titulo]="Titulo">
+  </app-titulo> 
+
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="card p-1 m-1 col-12 col-sm-12 col-md-10" >
+        <div class="d-flex">
+            <div class="p-2 flex-fill text-center">
+                <h4 class="text-center">Fecha: {{solicitud.FechaCreado | date:'medium'}}</h4>
+                <span *ngIf="esSolicitudRecurrente" class="badge badge-warning text-center">Pase recurrente</span>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-info" routerLink="/formato/{{solicitud.Id}}">Ver formato</button>
+            </div>
+
+        </div>
+      <div class="card-body "> 
+        
+        <div class="card">
+            <div class="card-header">
+              Solicitante:
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-start">
+                    <div class="col-4 col-xs-6 col-md-2">
+                        Solicitante:
+                    </div>
+                    <div class=" col-8 col-xs-6 col-md-4">
+                        <h5>{{solicitud.UsuarioSolicitante}}</h5>  
+                    </div>                 
+                    <div class=" col-4 col-xs-6 col-md-2">
+                        Estado:
+                    </div>
+                    <div class="col-8 col-xs-6 col-md-4">
+                        <app-estado-solicitud [estadoId]="solicitud.EstadoId">
+                        </app-estado-solicitud> 
+                    </div>  
+        
+                    <div class=" col-4 col-xs-6 col-md-2">
+                        Hora estima salida:
+                    </div>
+                    <div class="col-8 col-xs-6 col-md-4">
+                        <h5>{{solicitud.HoraSalida | date:'mediumTime'}}</h5>
+                    </div>                    
+                    
+                    <div class=" col-4 col-xs-6 col-md-2">
+                        Hora estima entrada:
+                    </div>       
+                    <div *ngIf="solicitud.Regresara" class="col-8 col-xs-6 col-md-4">
+                        <h5>{{solicitud.HoraEntrada | date:'mediumTime'}} </h5>  
+                    </div>  
+                    <div *ngIf="!solicitud.Regresara" class="col-8 col-xs-6 col-md-4">
+                        <h5>No Regresa </h5>  
+                    </div>
+                    
+                    <div class=" col-4 col-xs-6 col-md-2">
+                        Motivo Salida:
+                    </div>
+                    <div class="col-8 col-xs-6 col-md-4">
+                        <h5>{{solicitud.MotivoSalida}}</h5>
+                    </div>                    
+                    
+                    <div class=" col-4 col-xs-6 col-md-2">
+                        Comentario:
+                    </div>
+                    <div class="col-8 col-xs-6 col-md-4">
+                      <h5>{{solicitud.Observaciones}}  </h5>  
+                    </div>
+                    
+                    <div *ngIf="esSolicitudRecurrente" class=" col-4 col-xs-6 col-md-2">
+                        Fecha Desde:
+                    </div>
+                    <div *ngIf="esSolicitudRecurrente" class="col-8 col-xs-6 col-md-4">
+                        <h5>{{solicitud.FechaDesde | date: 'mediumDate'}}</h5>
+                    </div>                    
+                    
+                    <div *ngIf="esSolicitudRecurrente" class=" col-4 col-xs-6 col-md-2">
+                        Fecha Hasta:
+                    </div>
+                    <div *ngIf="esSolicitudRecurrente" class="col-8 col-xs-6 col-md-4">
+                      <h5>{{solicitud.FechaHasta | date: 'mediumDate' }}  </h5>  
+                    </div>
+
+                    <!-- <div *ngIf="!reasignar" class="col-4 col-xs-6 col-md-2">
+                        Asignada a:
+                    </div>
+                    <div *ngIf="!reasignar" class="col-8 col-xs-6 col-md-4">
+                        <h5>{{solicitud.UsuarioAutoriza}}</h5>
+                        <button class="btn text-primary" 
+                        *ngIf="solicitud.EstadoId == 1 && (solicitud.UsuarioSolicitanteId == empleadoCodigo || solicitud.UsuarioCreaId == empleadoCodigo )" 
+                        (click)="toggle_editar_asignacion()" > 
+                            <i class="fa fa-edit"></i>
+                        </button>
+                    </div>  
+                    <div *ngIf="reasignar" class=" col-4 col-xs-6 col-md-2">
+                        Reasignar a:
+                    </div>
+                    <div *ngIf="reasignar" class="col-8 col-xs-6 col-md-4">
+                       <select class="custom-select mt-3" [(ngModel)]="idUsuarioAutoriza">
+                          <option value="-1" selected="">Seleccionar</option>
+                          <option [value]="colaborador.Id"  *ngFor="let colaborador of colaboradoresAutorizan;">{{colaborador.Nombre}}</option>
+                      </select>  
+                      <button class="btn text-danger" (click)="toggle_editar_asignacion()">
+                          <i class="fa fa-times"></i>
+                      </button>
+                      <button class="btn btn-success p-1" (click)="reasignar_solicitud()">
+                          Reasignar
+                      </button>
+                    </div>                       -->
+                    
+                  </div>
+            </div>
+          </div>
+
+          <div class="card" *ngIf="solicitud.UsuarioCreaId != solicitud.UsuarioSolicitanteId">
+              <div class="card-header">
+                Usuario crea:
+              </div>
+              <div class="card-body">
+                
+                <div class="row justify-content-start">
+                    <div class=" col-4 col-xs-6 col-md-2">
+                        Usuario crea:
+                    </div>
+                    <div class="col-8 col-xs-6 col-md-4">
+                        <h5>{{solicitud.UsuarioCrea}}</h5>
+                    </div>                    
+                    
+                    <div class=" col-4 col-xs-6 col-md-2">
+                        Hora creación:
+                    </div>
+                    <div class="col-8 col-xs-6 col-md-4">
+                      <h5>{{solicitud.FechaCreado | date:'mediumTime'}} </h5>  
+                    </div> 
+                </div>
+
+              </div>
+            </div>
+            
+            <div class="card" *ngIf="mostrarSeccionAprobado">
+                <div class="card-header">
+                  Usuario aprueba:
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-start">
+                        <div class=" col-4 col-xs-6 col-md-2">
+                            Aprueba:
+                        </div>
+                        <div class="col-8 col-xs-6 col-md-4">
+                            <h5>{{solicitud.UsuarioAutoriza}} </h5>
+                        </div>                    
+                        
+                        <div class=" col-4 col-xs-6 col-md-2">
+                            Hora aprobación:
+                        </div>
+                        <div class="col-8 col-xs-6 col-md-4">
+                            <h5>{{solicitud.HoraAtendida | date:'mediumTime' }}</h5>  
+                        </div> 
+                    </div>
+                </div>
+              </div>
+
+              <div class="card" *ngIf="solicitud.EstadoId == 3 ">
+                  <div class="card-header">
+                    Usuario denegó:
+                  </div>
+                  <div class="card-body">
+                      <div class="row justify-content-start">
+                          <div class=" col-4 col-xs-6 col-md-2">
+                              Denegó:
+                          </div>
+                          <div class="col-8 col-xs-6 col-md-4">
+                              <h5>{{solicitud.UsuarioAutoriza}} </h5>
+                          </div>                    
+                          
+                          <div class=" col-4 col-xs-6 col-md-2">
+                              Hora denegación:
+                          </div>
+                          <div class="col-8 col-xs-6 col-md-4">
+                            <h5>{{solicitud.HoraAtendida | date:'mediumTime' }}</h5>  
+                          </div> 
+                      </div>
+                  </div>
+                </div>              
+              
+              <div class="card" *ngIf="solicitud.EstadoId == 5 || solicitud.EstadoId == 6">
+                  <div class="card-header">
+                    Usuario registra salida:
+                  </div>
+                  <div class="card-body">
+                      <div class="row justify-content-start">
+                          <div class=" col-4 col-xs-6 col-md-2">
+                              Marca salida:
+                          </div>
+                          <div class="col-8 col-xs-6 col-md-4">
+                              <h5>{{solicitud.UsuarioMarcaSalida}}</h5>
+                          </div>                    
+                          
+                          <div class=" col-4 col-xs-6 col-md-2">
+                              Hora salida:
+                          </div>
+                          <div class="col-8 col-xs-6 col-md-4">
+                            <h5>{{solicitud.HoraSalidaMarca | date:'mediumTime'}} </h5>  
+                          </div>  
+                          
+                          <div class=" col-4 col-xs-6 col-md-2">
+                              Marca entrada:
+                          </div>
+                          <div *ngIf="!solicitud.Regresara" class="col-8 col-xs-6 col-md-4">
+                                <h5>No Regresa </h5>  
+                            </div>
+                          <div *ngIf="solicitud.Regresara"  class="col-8 col-xs-6 col-md-4">
+                              <h5>{{solicitud.UsuarioMarcaEntrada}}</h5>
+                          </div>                    
+                          
+                          <div class=" col-4 col-xs-6 col-md-2">
+                              Hora entrada:
+                          </div>
+                          <div *ngIf="!solicitud.Regresara" class="col-8 col-xs-6 col-md-4">
+                                <h5>No Regresa </h5>  
+                            </div>
+                          <div *ngIf="solicitud.Regresara" class="col-8 col-xs-6 col-md-4">
+                            <h5>{{solicitud.HoraEntradaMarca | date:'mediumTime'}}</h5>  
+                          </div>   
+                      </div>
+                  </div>
+                </div>
+     
+          </div>
+    </div>   
+  </div>
+ 
+
+</div>

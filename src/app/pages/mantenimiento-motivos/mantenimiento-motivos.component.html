@@ -1,0 +1,129 @@
+
+
+<app-titulo [titulo]="Titulo">
+</app-titulo> 
+
+<div class="container">
+
+  
+  <div class="row justify-content-center p-2 mb-2">
+
+    <div *ngIf="!nuevoMotivo" class="col-2 text-center">
+      <button class="btn btn-primary"  (click)="nuevoMotivo = true">
+          <i class="fa fa-plus"></i>
+      </button>
+    </div>
+    <div *ngIf="nuevoMotivo" class="col-2">
+        <button class="btn btn-danger"  (click)="nuevoMotivo = false">
+            <i class="fa fa-ban"></i>
+        </button>
+    </div>
+  </div>
+
+
+  <div *ngIf="nuevoMotivo" class="row justify-content-center mb-3">
+      <div class="col-12 justify-content-center d-flex ">
+        <div>
+            <h4>Nuevo motivo de salida</h4>
+              <div class="form-group">
+                <label for="txtDescripcion">Descripción</label>
+                <input type="text" class="form-control" id="txtDescripcion" placeholder="Descripción" [(ngModel)]="txtDescripcion" >
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chkRequiereComentario" [(ngModel)]="chkRequiereComentario">
+                  <label class="custom-control-label" for="chkRequiereComentario">Requiere comentario</label>
+              </div>
+              <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="chkActivo" [(ngModel)]="chkActivo">
+                  <label class="custom-control-label" for="chkActivo">Activo</label>
+              </div>                
+              <div class="form-group m-1 p-1 justify-content-center d-flex">
+                  <button class="btn btn-success" (click)="crear_nuevo_motivo()" >Guardar</button>
+                </div>
+          </div>
+            
+      </div>
+  </div>
+
+  <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+  </app-no-hay-datos>
+
+  <div class="row justify-content-center " *ngIf="hayDatosParaMostrar">
+    <div class="col-12 col-lg-10">
+
+        <div class="row">
+            <div class="col-2">
+              <strong>
+                Id
+              </strong> 
+            </div>
+            <div class="col-5">
+              <strong>
+                Descripción
+              </strong>  
+            </div>
+            <div class="col-2">
+              <strong>
+                Activo
+              </strong>  
+            </div> 
+            <div class="col-3">
+              <strong>
+                Requiere comentario
+              </strong>  
+            </div>                     
+          </div>
+      
+
+      <div class="row p-2 " [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let motivo of motivos; let i = index">
+          <div class="col-2">
+              <h6 class="my-auto">
+                {{motivo.Id }} 
+              </h6>
+          </div>                
+          <div class="col-5">
+            <div *ngIf="!motivo.editar">
+              <h6 class="align-middle">
+                {{motivo.Descripcion}}
+                <button class="btn btn-link" (click)="motivo.editar = true"> 
+                  <i class="fa fa-edit"></i>  
+                </button>
+              </h6>
+            </div>
+            <div *ngIf="motivo.editar">
+                <input class="form-control" type="text" placeholder="Descripcion" [(ngModel)]="motivo.Descripcion">
+                <button class="btn btn-danger p-1 m-1" (click)="motivo.editar = false"> 
+                  Cancelar
+                </button>
+                <button class="btn btn-success p-1 m-1" (click)="actualiza_motivo_salida(motivo, false, false)"> 
+                    Actualizar
+                </button>
+            </div>  
+          </div>
+          <div class="col-2 col-md-2 align-middle">
+            <button *ngIf="motivo.Activo" class="btn btn-info" (click)="actualiza_motivo_salida(motivo, true, false)" >
+              <i class="fa fa-check"></i>
+            </button>  
+            <button *ngIf="!motivo.Activo" class="btn btn-dark" (click)="actualiza_motivo_salida(motivo, true, false)">
+                <i class="fa fa-times"></i>
+            </button>   
+          </div>
+          <div class="col-3 text-center">
+            <button *ngIf="motivo.ObservacionObligatoria" class="btn btn-info" (click)="actualiza_motivo_salida(motivo , false, true)" >
+              <i class="fa fa-check"></i>
+            </button>  
+            <button *ngIf="!motivo.ObservacionObligatoria" class="btn btn-dark" (click)="actualiza_motivo_salida(motivo, false, true)">
+                <i class="fa fa-times"></i>
+            </button>  
+          </div>
+      </div>
+        
+    </div>
+  </div>
+</div>
+  <app-loading [mostrar]="cargando">
+  </app-loading>
+
+
+
+  

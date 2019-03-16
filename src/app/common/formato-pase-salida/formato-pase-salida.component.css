@@ -1,0 +1,12 @@
+
+.subRayado{
+    border-bottom: 1px solid black;
+    width: 130px;
+}
+
+@media print {
+    #btnImprimir{
+        display: none;
+
+    }
+  }

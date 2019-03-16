@@ -1,0 +1,359 @@
+
+
+<app-titulo [titulo]="Titulo">
+  </app-titulo> 
+
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+        <input class="form-control form-control-md" type="text" placeholder="Código o Nombre">
+    </div>
+  </div>
+  <div class="row justify-content-center">
+      <div class="col-12 justify-content-center d-flex p-2 m-2">
+          <button class="btn btn-success m-1">Buscar</button>
+      </div>
+    </div>  
+    
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="row ">
+                <div class="col-3">
+                  <strong>
+                    Código
+                  </strong> 
+                </div>
+                <div class="col-6">
+                  <strong>
+                    Nombre
+                  </strong>  
+                </div>
+                <div class="col-3">
+                  <strong>
+                    Estado
+                  </strong>  
+                </div>                     
+              </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="row justify-content-center text-center">
+              <div class="d-none d-md-block col-12 col-md-4 text-center">
+                  <strong class="text-center">
+                    Acciones  
+                  </strong>  
+                </div> 
+            </div>
+        </div>        
+
+      </div>
+
+      <div class="row p-2 bg-light">
+        <div class="col-12 col-md-8">
+            <div class="row ">
+                <div class="col-3">
+                    <h6 class="my-auto">
+                      51782
+                    </h6>
+                </div>
+                <div class="col-6">
+                    <h6 class="align-middle">
+                      Saul Fernando Ramirez figueroa (COLABORADOR)
+                    </h6>
+                </div>
+                <div class="col-3 align-middle">
+                    <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                    <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                    <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                    <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="row justify-content-center">
+                <button class="btn btn-info m-1"> <i class="fas fa-info-circle"></i> </button>
+                <!-- <button class="btn btn-success m-1"> <i class="fas fa-check"></i> </button> -->
+                <button class="btn btn-danger m-1"> <i class="fas fa-times"></i> </button>
+            </div>
+          </div>        
+      </div>
+
+      
+      <div class="row p-2">
+        <div class="col-12 col-md-8">
+            <div class="row ">
+                <div class="col-3">
+                    <h6 class="my-auto">
+                      51782
+                    </h6>
+                </div>
+                <div class="col-6">
+                    <h6 class="align-middle">
+                      Saul Fernando Ramirez figueroa (JEFE)
+                    </h6>
+                </div>
+                <div class="col-3 align-middle">
+                    <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                    <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                    <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                    <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="row justify-content-center">
+                <button class="btn btn-info m-1" data-toggle="tooltip" data-placement="top" title="Ver"> <i class="fas fa-info-circle"></i> </button>
+                <button class="btn btn-success m-1"> <i class="fas fa-check"></i> </button>
+                <button class="btn btn-dark m-1"> <i class="fas fa-ban"></i> </button>
+            </div>
+          </div>        
+      </div>
+      
+      <div class="row p-2">
+          <div class="col-12 col-md-8">
+              <div class="row ">
+                  <div class="col-3">
+                      <h6 class="my-auto">
+                        51782
+                      </h6>
+                  </div>
+                  <div class="col-6">
+                      <h6 class="align-middle">
+                        Saul Fernando Ramirez figueroa (JEFE 2)
+                      </h6>
+                  </div>
+                  <div class="col-3 align-middle">
+                      <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                      <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                      <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                      <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-md-4">
+              <div class="row justify-content-center">
+                  <button class="btn btn-info m-1" data-toggle="tooltip" data-placement="top" title="Ver"> <i class="fas fa-info-circle"></i> </button>
+                  <button class="btn btn-danger m-1"> <i class="fas fa-times"></i> </button>
+              </div>
+            </div>        
+        </div>      
+
+
+      <div class="row p-2 bg-light"> 
+
+        <div class="col-12 col-md-8">
+            <div class="row ">
+                <div class="col-3">
+                    <h6 class="my-auto">
+                      51782
+                    </h6>
+                </div>
+                <div class="col-6">
+                    <h6 class="align-middle">
+                      Saul Fernando Ramirez figueroa (SEGURIDAD)
+                    </h6>
+                </div>
+                <div class="col-3 align-middle">
+                    <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                    <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                    <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                    <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="row justify-content-center">
+                <button class="btn btn-info m-1"> <i class="fas fa-info-circle"></i> </button>
+                <button class="btn btn-primary m-1"  > <i class="fas fa-arrow-up"></i> </button>
+                <button class="btn btn-warning m-1"  > <i class="fas fa-arrow-down"></i> </button>
+            </div>
+          </div>        
+      </div>
+
+      <div class="row p-2 "> 
+
+          <div class="col-12 col-md-8">
+              <div class="row ">
+                  <div class="col-3">
+                      <h6 class="my-auto">
+                        51782
+                      </h6>
+                  </div>
+                  <div class="col-6">
+                      <h6 class="align-middle">
+                        Saul Fernando Ramirez figueroa (ADMINISTRADOR)
+                      </h6>
+                  </div>
+                  <div class="col-3 align-middle">
+                      <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                      <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                      <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                      <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-md-4">
+              <div class="row justify-content-center">
+                  <button class="btn btn-info m-1"> <i class="fas fa-info-circle"></i> </button>
+                  <button class="btn btn-success m-1"  (click)="cambiar_estado('aprobada')"> <i class="fas fa-check"></i> </button>
+                  <button class="btn btn-danger m-1" (click)="cambiar_estado('denegada')" > <i class="fas fa-times"></i> </button>
+                  <button class="btn btn-dark m-1"> <i class="fas fa-ban"></i> </button>
+                  <button class="btn btn-primary m-1"  > <i class="fas fa-arrow-up"></i> </button>
+                  <button class="btn btn-warning m-1"  > <i class="fas fa-arrow-down"></i> </button>
+              </div>
+            </div>        
+        </div>      
+
+        <div class="row p-2 bg-light"> 
+
+            <div class="col-12 col-md-8">
+                <div class="row ">
+                    <div class="col-3">
+                        <h6 class="my-auto">
+                          51782
+                        </h6>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="align-middle">
+                          Saul Fernando Ramirez figueroa 
+                        </h6>
+                    </div>
+                    <div class="col-3 align-middle">
+                        <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                        <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                        <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                        <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row justify-content-center">
+                    <button class="btn btn-info m-1"> <i class="fas fa-info-circle"></i> </button>
+                </div>
+              </div>        
+          </div>   
+
+      <div class="row p-2 "> 
+
+          <div class="col-12 col-md-8">
+              <div class="row ">
+                  <div class="col-3">
+                      <h6 class="my-auto">
+                        51782
+                      </h6>
+                  </div>
+                  <div class="col-6">
+                      <h6 class="align-middle">
+                        Saul Fernando Ramirez figueroa
+                      </h6>
+                  </div>
+                  <div class="col-3 align-middle">
+                      <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                      <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                      <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                      <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-md-4">
+              <div class="row justify-content-center">
+                  <button class="btn btn-info m-1"> <i class="fas fa-info-circle"></i> </button>
+                  <button class="btn btn-danger m-1" (click)="cambiar_estado('denegada')" > <i class="fas fa-times"></i> </button>
+              </div>
+            </div>        
+        </div>           
+
+        <div class="row p-2 bg-light"> 
+
+            <div class="col-12 col-md-8">
+                <div class="row ">
+                    <div class="col-3">
+                        <h6 class="my-auto">
+                          51782
+                        </h6>
+                    </div>
+                    <div class="col-6">
+                        <h6 class="align-middle">
+                          Saul Fernando Ramirez figueroa 
+                        </h6>
+                    </div>
+                    <div class="col-3 align-middle">
+                        <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2 align-middle">Pendiente</span>
+                        <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                        <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                        <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row justify-content-center">
+                    <button class="btn btn-info m-1"> <i class="fas fa-info-circle"></i> </button>
+                    <button class="btn btn-danger m-1" (click)="cambiar_estado('denegada')" > <i class="fas fa-times"></i> </button>
+                </div>
+              </div>        
+          </div> 
+          
+          
+        <div class="card p-1 m-1" style="display:none;">
+            <div class="card-body"> 
+              <div class="row justify-content-start">
+
+                  <div class="col-4 col-xs-6 col-md-2">
+                      Código:
+                  </div>
+                  <div class=" col-8 col-xs-6 col-md-4">
+                    <h5>
+                      51782
+                    </h5>
+                  </div>                  
+                  <div class=" col-4 col-xs-6 col-md-2">
+                      Estado:
+                  </div>
+                  <div class="col-8 col-xs-6 col-md-4">
+                      <span *ngIf="estado == 'pendiente'" class="badge badge-secondary p-2">Pendiente</span>
+                      <span *ngIf="estado == 'denegada'" class="badge badge-danger p-2">Denegada</span>
+                      <span *ngIf="estado == 'aprobada'" class="badge badge-success p-2">Aprobada</span>
+                      <span *ngIf="estado == 'finalizada'" class="badge badge-info p-2">Finalizada</span>
+                  </div>  
+                  <div class="col-4 col-xs-6 col-md-2">
+                    Nombre:
+                  </div>
+                  <div class=" col-8 col-xs-6 col-md-4">
+                    <h5>Saul Fernando Ramirez Figueroa</h5>  
+                  </div>  
+                  
+                  <div class=" col-4 col-xs-6 col-md-2">
+                      Aprueba:
+                  </div>
+                  <div class="col-8 col-xs-6 col-md-4">
+                      <h5>Orlin Alvarado</h5>
+                  </div>                    
+                  
+                  <div class=" col-4 col-xs-6 col-md-2">
+                      Fecha  y Hora:
+                  </div>
+                  <div class="col-8 col-xs-6 col-md-4">
+                    <h5>08-02-2019 10:30 am </h5>  
+                  </div>                     
+
+              </div>
+              <div class="row justify-content-center m-2">
+                <div class="col col-sm-2">
+                    <button type="button" class="btn btn-success" (click)="cambiar_estado('aprobada')">Aprobar</button>
+                </div>
+                <div class="col col-sm-2">
+                    <button type="button" class="btn btn-danger" (click)="cambiar_estado('denegada')" >Denegar</button>
+                </div> 
+
+              </div>                
+            </div>
+        </div>                
+    </div>
+  </div>
+</div>
+
+
+
+  

@@ -1,0 +1,115 @@
+
+
+<app-titulo [titulo]="Titulo">
+  </app-titulo> 
+
+<div class="container">
+
+    
+  <div  class="row justify-content-center">
+      <div class="col-12 justify-content-center d-flex ">
+          <button class="btn btn-success m-1" (click)="obtener_solicitudes()" >Actualizar solicitudes</button>
+      </div>
+  </div>
+
+  <div  class="row justify-content-center p-2">
+      <div class="col-12 col-md-6 justify-content-center d-flex ">
+          <input class="form-control form-control-md" type="text" [(ngModel)]="txtTerminoBusqueda" placeholder="Buscar nombre o código" (keyup)="filtrar_datos($event)">
+      </div>
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="chkSoloAprobadas" (change)="toggleEstadoSolicitudes()"  [(ngModel)]="chkSoloAprobadas" >
+          <label class="custom-control-label" for="chkSoloAprobadas">Solo mostrar solicitudes aprobadas</label>
+      </div>        
+  </div>
+  
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <div class="row ">
+                    <div class="col-2">
+                        <strong>
+                          Fecha
+                        </strong> 
+                      </div>
+                    <div class="col-2">
+                      <strong>
+                        Código
+                      </strong> 
+                    </div>
+                    <div class="col-5 col-md-6">
+                      <strong>
+                        Nombre
+                      </strong>  
+                    </div>
+                    <div class="col-3 col-md-2">
+                      <strong>
+                        Estado
+                      </strong>  
+                    </div>                     
+                  </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="row justify-content-center text-center">
+                  <div class="d-none d-md-block col-12 col-md-4 text-center">
+                      <strong class="text-center">
+                        Acciones  
+                      </strong>  
+                    </div> 
+                </div>
+            </div>        
+    
+          </div>        
+
+      <div class="row p-2 " [ngClass]="{'bg-light': !(i % 2) }" *ngFor="let solicitud of solicitudes; let i = index">
+        <div class="col-12 col-md-9">
+            <div class="row ">
+                <div class="col-2">
+                    <h6 class="my-auto">
+                      {{solicitud.FechaCreado | date:'medium' }} 
+                    </h6>
+                </div>
+                <div class="col-2">
+                    <h6 class="my-auto">
+                      {{solicitud.UsuarioSolicitanteId}}
+                    </h6>
+                </div>                
+                <div class="col-5 col-md-6">
+                    <h6 class="align-middle">
+                      {{solicitud.UsuarioSolicitante}}
+                    </h6>
+                </div>
+                <div class="col-3 col-md-2 align-middle">
+                    <app-estado-solicitud [estadoId]="solicitud.EstadoId">
+                    </app-estado-solicitud> 
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="row justify-content-start">
+                <button class="btn btn-info m-1" data-toggle="tooltip" data-placement="top" title="Ver solicitud" routerLink="/verSolicitud/{{solicitud.Id}}" style="min-width:  105px" >
+                 Info. <i class="fa fa-info-circle"></i>
+                 </button>  
+                <button class="btn btn-warning m-1" *ngIf="solicitud.EstadoId == 2" (click)="marcar_salida(solicitud.Id, solicitud.UsuarioSolicitante)" data-toggle="tooltip" data-placement="top" title="Marcar salida" style="min-width:  105px"> 
+                  Salida <i class="fa fa-arrow-up"></i> 
+                </button>
+                <button class="btn btn-primary m-1" *ngIf="solicitud.EstadoId == 5" (click)="marcar_entrada(solicitud.Id, solicitud.UsuarioSolicitante)" data-toggle="tooltip" data-placement="top" title="Marcar entrada" style="min-width:  105px" > 
+                  Entrada <i class="fa fa-arrow-down"></i> 
+                </button>
+            </div>
+          </div>        
+      </div>
+
+                      
+    </div>
+  </div>
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>
+
+  

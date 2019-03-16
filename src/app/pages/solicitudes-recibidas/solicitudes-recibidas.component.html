@@ -1,0 +1,216 @@
+
+
+<app-titulo [titulo]="Titulo">
+</app-titulo> 
+
+
+<div class="container">
+
+  <div *ngIf="!yaSeMostroAlerta" class="row justify-content-center">
+    <div class="col-12 col-md-8  py-2">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="cerrar_alerta()">
+              <span aria-hidden="true">×</span>
+            </button>
+            <strong>¡Atención!</strong> Aquí se muestran todas las solicitudes del área
+          </div>            
+    </div>  
+  </div>
+
+    <div class="row justify-content-around p-2 mb-2">
+        <div class="col-3 text-center">
+          <button *ngIf="mostarFiltroFechas" class="btn btn-danger" (click)="mostarFiltroFechas = !mostarFiltroFechas" >
+            Filtros <i class="fa fa-eye-slash"></i>
+          </button>
+          <button *ngIf="!mostarFiltroFechas" class="btn btn-info" (click)="mostarFiltroFechas = !mostarFiltroFechas">
+            Filtros  <i class="fa fa-filter"></i>
+          </button>
+        </div>
+        <div class="col-3 text-center">
+          <button class="btn btn-primary"  routerLink="/crearSolicitud">
+            Nueva  <i class="fa fa-plus"></i>
+          </button>
+        </div>
+    </div>
+
+
+      <div *ngIf="mostarFiltroFechas" class="row justify-content-center">
+          <div class="p-1 m-1">
+            Desde:
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                          name="d1" #c2="ngModel" [(ngModel)]="fechaDesde" ngbDatepicker #d1="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          
+          <div class="p-1 m-1">
+            Hasta:
+            <form class="form-inline">
+              <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd"
+                          name="d2" #c2="ngModel" [(ngModel)]="fechaHasta" ngbDatepicker #d2="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    
+    <div *ngIf="mostarFiltroFechas" class="row justify-content-center">
+        <div class="col-12 justify-content-center d-flex ">
+            <button class="btn btn-success m-1" (click)="obtener_solicitudes_recibidas()" >Mostrar</button>
+        </div>
+    </div>
+
+  <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+  </app-no-hay-datos>
+    
+  <div class="row justify-content-center" *ngIf="hayDatosParaMostrar">
+    <div class="col-12 col-lg-10">
+      <div class="row justify-content-end">
+        <div class="col-2">
+            <button class="btn btn-link" *ngIf="!mostrarBtnFiltrarNombre" (click)="mostrarBtnFiltrarNombre = true">
+                <i class="fa fa-search"></i>
+            </button>
+            <button class="btn btn-link text-danger" *ngIf="mostrarBtnFiltrarNombre" (click)="quitar_filtros()">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-12 col-md-9">
+                <div class="row ">
+                    <div class="col-3">
+                        <strong>
+                          Fecha
+                        </strong> 
+                      </div>
+                    <div class="col-2">
+                      <strong>
+                        Código
+                      </strong> 
+                    </div>
+                    <div class="col-4 col-md-5">
+                      <strong>
+                        Nombre
+                      </strong>  
+                    </div>
+                    <div class="col-3 col-md-2">
+                      <strong>
+                        Estado
+                      </strong>  
+                    </div>                     
+                  </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="row justify-content-center text-center">
+                  <div class="d-none d-md-block col-12 col-md-4 text-center">
+                      <strong class="text-center">
+                        Acciones  
+                      </strong>  
+                    </div> 
+                </div>
+            </div>        
+    
+          </div>
+
+      <!-- Filtros -->
+      <div class="row" *ngIf="mostrarBtnFiltrarNombre">
+          <div class="col-12 col-md-9">
+              <div class="row ">
+                  <div class="col-1">
+
+                  </div>
+                  <div class="col-3">
+                      <input class="form-control" type="text" placeholder="Código" (keyup)="filtrar_datos($event)" [(ngModel)]="txtcodigo">
+                  </div>
+                  <div class="col-5 col-md-5">
+                      <input class="form-control" type="text" placeholder="Nombre" (keyup)="filtrar_datos($event)" [(ngModel)]="txtNombre">
+                  </div>
+                  <div class="col-3 col-md-3">
+                      <select class="custom-select" [(ngModel)]="estadoSeleccionado" (change)="filtrar_datos($event)">
+                          <option value="{{estado.valor}}" *ngFor="let estado of estados" > {{estado.Descripcion}} </option>
+                        </select>
+                  </div>                     
+                </div>
+          </div>
+          <!-- <div class="col-12 col-md-3">
+              <div class="row justify-content-center text-center">
+                <div class="d-none d-md-block col-12 col-md-4 text-center">
+                    <strong class="text-center">
+                      
+                    </strong>  
+                  </div> 
+              </div>
+          </div>         -->
+
+        </div>
+          
+
+      <div class="row p-2 " [ngClass]="{'bg-light': (!(i % 2) ), '' : (solicitud.EsPaseRecurrente) }" *ngFor="let solicitud of solicitudes; let i = index">
+        <div class="col-12 col-md-9">
+            <div class="row ">
+                <div class="col-3">
+                    <h6 class="my-auto">
+                      {{solicitud.FechaCreado | date:'medium' }} 
+                    </h6>
+                </div>
+                <div class="col-2">
+                    <h6 class="my-auto">
+                      {{solicitud.UsuarioSolicitanteId}}
+                    </h6>
+                </div>                
+                <div class="col-4 col-md-5">
+                    <h6 class="align-middle">
+                      {{solicitud.UsuarioSolicitante}}
+                      <span *ngIf="solicitud.EsPaseRecurrente" class="badge badge-warning p-1">Solicitud recurrente</span>
+                    </h6>
+                </div>
+                <div class="col-3 col-md-2 align-middle">
+                    <app-estado-solicitud [estadoId]="solicitud.EstadoId">
+                    </app-estado-solicitud> 
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="row justify-content-start  ">
+              <div class="d-block">
+                <button class="btn btn-info m-1 d-block" data-toggle="tooltip" data-placement="top" title="Ver Solicitud"  (click)="ver_solicitud(solicitud.Id, solicitud.EsPaseRecurrente)" style="min-width:  105px" >
+                  Info. <i class="fa fa-info-circle"></i>
+                </button>
+              </div>  
+              <div class="d-block">
+                <button class="btn btn-success m-1 d-block" data-toggle="tooltip" data-placement="top" title="Aprobar Solicitud" *ngIf="solicitud.ElPaseEsDeHoy && solicitud.EstadoId == 1 " (click)="aprobar_solicitud(solicitud.Id, solicitud.EsPaseRecurrente)"> 
+                  Aprobar <i class="fa fa-check"></i> 
+                </button>
+              </div>
+              <div class="d-block">
+                <button class="btn btn-danger m-1"  *ngIf="solicitud.ElPaseEsDeHoy && solicitud.EstadoId == 1 " data-toggle="tooltip" data-placement="top" title="Denegar Solicitud" (click)="denegar_solicitud(solicitud.Id , solicitud.EsPaseRecurrente)" >
+                  Denegar   <i class="fa fa-ban"></i> 
+                </button>
+              </div>
+            </div>
+          </div>        
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>
+

@@ -1,0 +1,51 @@
+
+<nav *ngIf="navBar.visible" class="navbar navbar-expand-xl navbar-light ">
+  <div class="row">
+    <img src="../../../assets/img/logo.png" id="imgLogo" alt="logo">
+    <span class="navbar-brand mb-0 h1 p-1">Control de acceso</span>
+  </div>  
+    <button *ngIf="mostrarEnlaces" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div *ngIf="mostrarEnlaces" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item active" id="liMenu" *ngFor="let opcionMenu of obtener_opciones_menu()"  >
+          <a class="nav-link" routerLink="/{{opcionMenu.Ruta}}" > 
+            <i class="{{opcionMenu.Icono != '' ?  opcionMenu.Icono : 'fa fa-link' }} iconNavbar"></i>
+             {{opcionMenu.Descripcion}} </a>
+        </li>
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+          <button class="btn my-2 my-sm-0 " type="button" data-toggle="modal" data-target="#modalPerfil" >
+              <i class="fa fa-user-circle fa-lg " id="imgPerfil"></i>
+          </button>
+      </form>    
+    </div>
+  </nav>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalPerfil" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal3Label">Usuario:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <span> {{ usuario_nombre() }} </span>
+          <br>
+          <small>V 0.1.0</small>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="cerrar_sesion()" >Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
