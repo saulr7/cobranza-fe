@@ -1,0 +1,46 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container-fluid">
+
+    <div class="row justify-content-center m-1 p-1 ">
+
+        <div *ngIf="isAdmin" class="col-4 text-center">
+            <button class="btn btn-primary" routerLink="/nuevoAnuncio">
+              Nueva <i class="fa fa-plus"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+    </app-no-hay-datos>
+
+    <div class="row justify-content-center m-4" *ngFor="let anuncio of anuncios">
+
+        <div class="col-12 col-md-8 ">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="">{{anuncio.Titulo}}</h3>
+                        <button *ngIf="isAdmin" class="btn btn-danger" (click)="eliminar_anuncio(anuncio.id)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text" [innerHTML]=anuncio.Contenido></p>
+                </div>
+                <div class="card-footer">
+                    {{anuncio.createdAt | date:'medium' }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

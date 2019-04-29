@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SolicitudesService} from '../../services/solicitudes/solicitudes.service';
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 import {ISolicitud} from '../../models/solicitudes/solicitud';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2'
@@ -30,9 +30,9 @@ export class MisSolicitudesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.obtener_usuario_logueado();
-    this.setear_fecha();
-    this.obtener_solicitudes();
+    // this.obtener_usuario_logueado();
+    // this.setear_fecha();
+    // this.obtener_solicitudes();
     
   }
 

@@ -3,7 +3,7 @@ import {EmpleadosService} from '../../services/empleados/empleados.service';
 import Swal from 'sweetalert2'
 import {IEmpleado} from '../../models/empleados/empleado';
 import {IPerfil} from '../../models/perfiles/perfil';
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 import {Perfiles} from '../../models/perfiles/perfilesObj';
 
 @Component({

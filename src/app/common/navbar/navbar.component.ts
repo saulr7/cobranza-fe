@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Router} from '@angular/router';
 import {NavbarService} from '../../services/navbar/navbar.service';
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,10 +22,12 @@ export class NavbarComponent implements OnInit {
   ]
 
   constructor(
-      private router : Router
-    , public navBar : NavbarService
-    , private loginService : LoginService
-  ) { }
+    private router : Router,
+    public navBar : NavbarService,
+    private loginService : LoginService
+  ) { 
+    
+  }
 
   ngOnInit() 
   {
@@ -69,6 +71,8 @@ export class NavbarComponent implements OnInit {
   {
     var pantallasString = localStorage.getItem("menu")
     this.pantallas = JSON.parse(pantallasString)
+    // this.pantallas = JSON.parse(pantallasString)
+    // console.log(this.pantallas);
     return this.pantallas;
   }
 

@@ -1,0 +1,54 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+
+
+    <div class="row ">
+
+        <div class="col-12">
+
+            <div class="row justify-content-center m-2 p-2">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <!-- <div class="form-group"> -->
+                    <label for="formGroupExampleInput">Título:</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Título" [(ngModel)]="nuevoAnuncio.Titulo">
+                    <!-- </div> -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12">
+
+            <div class="row justify-content-center">
+
+                <div class="col-12 col-md-10 col-lg-8">
+                    <h5>Contenido:</h5>
+                    <angular-editor [(ngModel)]="nuevoAnuncio.Contenido">
+                    </angular-editor>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center m-2 p-2">
+
+        <!-- <div>
+
+            <p [innerHTML]=nuevoAnuncio.Contenido></p>
+            {{nuevoAnuncio.Contenido}}
+        </div> -->
+        <div class="form-group m-1 p-1 justify-content-center d-flex">
+            <button class="btn btn-success" (click)="guardar_anuncio()">Guardar</button>
+        </div>
+    </div>
+
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

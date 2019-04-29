@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SolicitudesService} from '../../services/solicitudes/solicitudes.service';
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 import {ISolicitud} from '../../models/solicitudes/solicitud';
 import {EstadoSolicitud} from '../../models/solicitudes/estados';
 import {EstadosObj} from '../../models/solicitudes/estadosObject';

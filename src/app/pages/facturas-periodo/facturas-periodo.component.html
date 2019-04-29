@@ -1,0 +1,63 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+
+    <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+    </app-no-hay-datos>
+
+    <!-- <div class="row justify-content-center p-2">
+        <div class="col-12 col-md-6 justify-content-center d-flex ">
+            <input class="form-control form-control-md" type="text" [(ngModel)]="txtCliente" placeholder="Buscar cliente" (keyup)="filtrar_datos($event)">
+        </div>
+    </div> -->
+
+
+    <div style="overflow-x:auto;">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-xl-10">
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Persona</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                            <th>Fecha Pago</th>
+                            <th>Vence</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let factura of facturas; let i = index">
+                            <td>{{factura.vivienda.persona.Nombre}} {{factura.vivienda.persona.Apellido}} </td>
+                            <td>
+                                <app-estado-factura [FechaPago]="factura.FechaPago" [Pagada]="factura.Pagada" [Anulada]="factura.Anulada" [FechaAnulada]="factura.FechaAnulada">
+                                </app-estado-factura>
+                            </td>
+                            <td>{{factura.Total}}</td>
+                            <td>{{factura.FechaPago | date:'short' }}</td>
+                            <td>{{factura.FechaVence | date:'mediumDate' }}</td>
+                            <td>
+                                <button class="btn btn-info m-1" style="min-width:105px" routerLink="/verFactura/{{factura.id}}">
+                                  Ver <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

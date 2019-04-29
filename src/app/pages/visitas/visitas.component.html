@@ -1,0 +1,44 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+
+    <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+    </app-no-hay-datos>
+
+
+
+    <div *ngIf="hayDatosParaMostrar" class="row justify-content-center p-2">
+        <div class="col-12 col-md-6 justify-content-center d-flex ">
+            <input class="form-control form-control-md" type="text" [(ngModel)]="txtNombre" placeholder="Buscar visitante o residente" (keyup)="filtrar_datos($event)">
+        </div>
+    </div>
+
+    <table *ngIf="hayDatosParaMostrar" class="table table-borderless " style="overflow-x: scroll">
+        <thead class="">
+            <tr>
+                <th>Visitante</th>
+                <th class="d-none d-lg-block">Descripcion</th>
+                <th>Residente</th>
+                <th class="d-none d-lg-block"> Dirección</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let visita of visitas; let i = index">
+                <td> {{visita.NombreVisitante}} </td>
+                <td class="d-none d-lg-block"> {{visita.Descripcion}} </td>
+                <td> {{visita.usuario.persona.Nombre}} {{visita.usuario.persona.Apellido}} </td>
+                <td class="d-none d-lg-block"> {{visita.usuario.persona.Direccion}} </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

@@ -1,3 +1,5 @@
+import { IPersona } from "../personaModel";
+
 export class IUsuario{
 
     Id: number
@@ -8,4 +10,5 @@ export class IUsuario{
     AreaId: number
     Area : string;
     TipoUsuario : number;
+    persona : IPersona
 }

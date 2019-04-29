@@ -1,0 +1,90 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+
+    <div class="row justify-content-around">
+        <div class="col-3 text-center">
+            <button class="btn btn-primary" routerLink="/nuevaPersona">
+         Nueva <i class="fa fa-plus"></i>
+      </button>
+        </div>
+    </div>
+
+
+
+    <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+    </app-no-hay-datos>
+
+    <div class="row justify-content-center" *ngIf="hayDatosParaMostrar">
+        <div class="col-12 col-lg-10">
+            <div class="row">
+                <div class="col-12 col-md-9">
+                    <div class="row ">
+                        <div class="col-4">
+                            <strong>
+                      Nombre
+                    </strong>
+                        </div>
+                        <div class="col-3">
+                            <strong>
+                    Celular
+                  </strong>
+                        </div>
+                        <div class="col-4">
+                            <strong>
+                    NoIdentidad
+                  </strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="row justify-content-center text-center">
+                        <div class="d-none d-md-block col-12 col-md-4 text-center">
+                            <strong class="text-center">
+                    Acciones  
+                  </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row p-2 " [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let persona of personas; let i = index">
+                <div class="col-12 col-sm-12 col-md-9">
+                    <div class="row ">
+                        <div class="col-4">
+                            <h6 class="my-auto">
+                                {{persona.Nombre }} {{persona.Apellido}}
+                            </h6>
+                        </div>
+                        <div class="col-3">
+                            <h6 class="my-auto">
+                                {{persona.Celular }}
+                            </h6>
+                        </div>
+                        <div class="col-4">
+                            <h6 class="align-middle">
+                                {{persona.NoIdentidad}}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3 text-center">
+                    <div class="row justify-content-center d-flex ">
+                        <!-- <button class="btn btn-info m-1" data-toggle="tooltip" data-placement="top" title="Ver persona" style="min-width:  105px">
+                  ver <i class="fa fa-info-circle"></i> 
+                </button> -->
+                        <button class="btn btn-info m-1" data-toggle="tooltip" data-placement="top" title="Ver pagos" style="min-width:105px" routerLink="/verPersona/{{persona.id}}">
+                    Ver <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-loading [mostrar]="cargando">
+</app-loading>

@@ -22,6 +22,23 @@ import {RoleGuardService} from './guards/role-guard.service';
 import {RoleMarcajeService} from './guards/role-marcaje.service';
 import {RoleUsuarioEstandarGuard} from '../app/guards/role-usuario-estandar.guard';
 
+//Nuevas
+import {PersonasComponent} from '../app/pages/personas/personas.component';
+import { NuevaPersonaComponent } from './pages/nueva-persona/nueva-persona.component';
+import { FormaDePagoComponent } from './pages/forma-de-pago/forma-de-pago.component';
+import { FacturasPendientesComponent } from './pages/facturas-pendientes/facturas-pendientes.component';
+import { MisFacturasComponent } from './pages/mis-facturas/mis-facturas.component';
+import { VerFacturaComponent } from './pages/ver-factura/ver-factura.component';
+import { VisitasComponent } from './pages/visitas/visitas.component';
+import { MisVisitasComponent } from './pages/mis-visitas/mis-visitas.component';
+import { NuevoAnuncioComponent } from './pages/nuevo-anuncio/nuevo-anuncio.component';
+import { AnunciosComponent } from './pages/anuncios/anuncios.component';
+import { FacturasComponent } from './pages/facturas/facturas.component';
+import { FacturasPeriodoComponent } from './pages/facturas-periodo/facturas-periodo.component';
+import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { VerViviendaComponent } from './pages/ver-vivienda/ver-vivienda.component';
+import { PersonaComponent } from './pages/persona/persona.component';
+
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
   {path : 'crearSolicitud' , component : CrearSolicitudComponent , canActivate  : [RoleUsuarioEstandarGuard]  },
@@ -37,6 +54,24 @@ const routes: Routes = [
   {path : 'mantenimientoPorArea' , component : MantenimientoEmpleadosAreaComponent, canActivate  : [AuthService] , data: { expectedRole1: '4'  } },
   {path : 'mantenimientoMotivos' , component : MantenimientoMotivosComponent , canActivate  : [RoleGuardService] , data: { expectedRole1: '1'  }  },
   {path : 'reporteEntradasSalidas' , component : ReporteEntradasSalidasComponent ,   canActivate  : [AuthService] }, 
+
+  {path : 'personas', component : PersonasComponent, canActivate : [AuthService]},
+  {path : 'nuevaPersona', component : NuevaPersonaComponent, canActivate : [AuthService]},
+  {path : 'formasDePago', component : FormaDePagoComponent, canActivate : [AuthService]},
+  {path : 'facturas', component : FacturasComponent, canActivate : [AuthService]},
+  {path : 'verPersona/:personaId', component : PersonaComponent, canActivate : [AuthService]},
+  {path : 'facturasPendientes/:viviendaId', component : FacturasPendientesComponent, canActivate : [AuthService]},
+  // {path : 'pagarFactura/:facturaId', component : PagarFacturaComponent, canActivate : [AuthService]},
+  {path : 'verFactura/:facturaId', component : VerFacturaComponent, canActivate : [AuthService]},
+  {path : 'misFacturas', component : MisFacturasComponent, canActivate : [AuthService]},
+  {path : 'facturasPeriodo/:anio/:mes', component : FacturasPeriodoComponent, canActivate : [AuthService]},
+  {path : 'visitas', component : VisitasComponent, canActivate : [AuthService]},
+  {path : 'misVisitas', component : MisVisitasComponent, canActivate : [AuthService]},
+  {path : 'nuevoAnuncio', component : NuevoAnuncioComponent, canActivate : [AuthService]},
+  {path : 'anuncios', component : AnunciosComponent, canActivate : [AuthService]},
+  {path : 'servicios', component : ServiciosComponent, canActivate : [AuthService]},
+  {path : 'verVivienda/:viviendaId', component : VerViviendaComponent, canActivate : [AuthService]},
+
   {path : '**', component :  NotFoundComponent ,  canActivate  : [AuthService] }
 
 ];

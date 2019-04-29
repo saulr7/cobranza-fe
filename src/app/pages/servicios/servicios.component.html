@@ -1,0 +1,101 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+
+    <div class="row justify-content-center p-2 mb-2">
+
+        <div class="col-3 text-center">
+            <button class="btn btn-primary" (click)="crearFormaPago = !crearFormaPago">
+         Nueva <i class="fa fa-plus"></i>
+      </button>
+        </div>
+    </div>
+
+
+    <div *ngIf="crearFormaPago">
+
+
+        <div class="row p-1 m-2 justify-content-center">
+            <div class="col-12 col-md-7 col-lg-5">
+                <div class="form-group row">
+                    <label for="txtDescripcion" class="col-sm-3 col-form-label">Descripción:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtDescripcion" placeholder="Descripción" [(ngModel)]="nuevoServicio.Descripcion">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-1 m-2 justify-content-center">
+            <div class="col-12 col-md-7 col-lg-5">
+                <div class="form-group row">
+                    <label for="txtValor" class="col-sm-3 col-form-label">Valor:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtValor" placeholder="0.00" [(ngModel)]="nuevoServicio.Valor">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-1 m-2 justify-content-center">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="chkTodosClientes" [(ngModel)]="chkTodosClientes">
+                <label class="custom-control-label" for="chkTodosClientes">Agregar a todos los clientes</label>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            <div class="form-group m-1 p-1 justify-content-center d-flex">
+                <button class="btn btn-success" (click)="crear_nuevo_servicio()">Guardar</button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="row justify-content-center m-2">
+
+        <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+        </app-no-hay-datos>
+    </div>
+
+    <div class="row justify-content-center m-2" *ngIf="hayDatosParaMostrar">
+
+        <div class="col-12 col-md-8 col-lg-7">
+            <!-- <h3>Servcios:</h3> -->
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                        <th>Valor</th>
+                        <th class="d-none d-lg-block">Fecha Agregado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let servicio of Servicos; let i = index">
+                        <td>{{servicio.Descripcion}}</td>
+                        <td>{{servicio.Valor }}</td>
+                        <td class="d-none d-lg-block">{{servicio.createdAt | date:'medium' }}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="eliminar_servicio(servicio.id)">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

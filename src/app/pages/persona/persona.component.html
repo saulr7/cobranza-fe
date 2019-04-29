@@ -1,0 +1,255 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container-fluid">
+
+
+
+    <div class="row justify-content-center">
+
+
+        <div class="card p-1 m-1 col-12  col-md-10">
+            <div class="d-flex">
+                <div class="flex-fill text-center">
+                    <h4 class="text-center">{{persona.Nombre}} {{persona.Apellido}} </h4>
+                </div>
+            </div>
+
+            <div class="card-body ">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5> Información general: </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-start">
+
+                            <div class="col-4 col-xs-6 col-md-2">
+                                No. Identidad:
+                            </div>
+
+                            <div class=" col-8 col-xs-6 col-md-4">
+                                <h5>{{persona.NoIdentidad}}</h5>
+                            </div>
+
+                            <div class=" col-4 col-xs-6 col-md-2">
+                                Celular:
+                            </div>
+
+                            <div class="col-8 col-xs-6 col-md-4">
+                                <h5> {{persona.Celular}} </h5>
+                            </div>
+
+                            <div class="col-4 col-xs-6 col-md-2">
+                                Correo:
+                            </div>
+
+                            <div class=" col-8 col-xs-6 col-md-4">
+                                <h5>{{persona.Correo}}</h5>
+                            </div>
+
+                            <div class=" col-4 col-xs-6 col-md-2">
+                                Dirección:
+                            </div>
+
+                            <div class="col-8 col-xs-6 col-md-4">
+                                <h5> {{persona.Direccion}} </h5>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5> Usuario: </h5>
+                    </div>
+                    <div class="card-body">
+
+                        <div *ngIf="tieneUsuario" class="row justify-content-start">
+
+                            <div class="col-4 col-xs-6 col-md-2">
+                                Usuario:
+                            </div>
+
+                            <div class=" col-8 col-xs-6 col-md-4">
+                                <h5>{{Usuario.Usuario}}</h5>
+                            </div>
+
+                            <div class=" col-4 col-xs-6 col-md-2">
+                                Tipo usuario:
+                            </div>
+
+                            <div class="col-8 col-xs-6 col-md-4">
+                                <h5> {{Usuario.tipo_usuario.Descripcion}} </h5>
+                            </div>
+                        </div>
+
+                        <div *ngIf="!tieneUsuario" class="row justify-content-center">
+
+                            <div class="col">
+
+                                <div class="row justify-content-center">
+
+                                    <button *ngIf="!crearUsuario" class="btn btn-primary m-1" style="min-width:105px" (click)="crearUsuario = true">
+                                          Crear usuario <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </button>
+
+                                    <button *ngIf="crearUsuario" class="btn btn-danger m-1" style="min-width:105px" (click)="crearUsuario = false">
+                                          Cancelar <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+
+                                </div>
+
+                                <div *ngIf="crearUsuario" class="row justify-content-center">
+
+                                    <div class="col">
+
+
+                                        <div class="row p-1 m-2 justify-content-center">
+                                            <div class="col-12 col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 " for="txtViviendaDireccion">Tipo usuario:</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="custom-select" [(ngModel)]="nuevoUsuario" id="nuevoUsuario">
+                                                                <option *ngFor="let tipoUsuario of TipoUsuarios" value="{{tipoUsuario.id}}">{{tipoUsuario.Descripcion}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="form-group m-1 p-1 justify-content-center d-flex">
+                                                <button class="btn btn-success" (click)="crear_nueva_usuario()">Crear</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <h5> Viviendas </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-12  ">
+
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Descripción</th>
+                                            <th class="">Direccion</th>
+                                            <th class="d-none d-lg-block">Fecha Agregado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let Vivienda of viviendas; let i = index">
+                                            <td>{{Vivienda.Descripcion}}</td>
+                                            <td class="">{{Vivienda.Direccion }}</td>
+                                            <td class="d-none d-lg-block">{{Vivienda.createdAt | date:'medium' }}</td>
+                                            <td>
+                                                <div>
+
+                                                    <button class="btn btn-info m-1" routerLink="/verVivienda/{{Vivienda.id}}">
+                                                         <span class="d-none d-lg-inline"> Ver </span>  <i class="fa fa-info-circle"></i> 
+                                                      </button>
+                                                    <button class="btn btn-primary m-1" routerLink="/facturasPendientes/{{Vivienda.id}}">
+                                                          <span class="d-none d-lg-inline"> Facturas </span> <i class="fa fa-money" aria-hidden="true"></i>
+                                                      
+                                                      </button>
+
+                                                    <button class="btn btn-danger m-1" (click)="eliminar_vivienda(Vivienda.id)">
+                                                        <span class="d-none d-lg-inline"> Eliminar </span> <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div *ngIf="isAdmin" class="d-flex justify-content-center">
+                    <div>
+
+                        <button *ngIf="!nuevaVivienda" class="btn btn-primary m-2" (click)="nuevaVivienda = true">
+                                      Nueva vivienda <i class="fa fa-plus"></i>
+                                   </button>
+
+                        <button *ngIf="nuevaVivienda" class="btn btn-danger m-2" (click)="nuevaVivienda = falde">
+                              Cancelar <i class="fa fa-times"></i>
+                              </button>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div *ngIf="nuevaVivienda" class="row justify-content-center">
+
+                <div class="col">
+
+                    <div class="row p-1 m-2 justify-content-center">
+                        <div class="col-12 col-md-7">
+                            <div class="form-group row">
+                                <label class="col-sm-3 " for="txtViviendaDescripcion">Descripción vivienda</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txtViviendaDescripcion" placeholder="Descripción" [(ngModel)]="vivienda.Descripcion">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row p-1 m-2 justify-content-center">
+                        <div class="col-12 col-md-7">
+                            <div class="form-group row">
+                                <label class="col-sm-3 " for="txtViviendaDireccion">Dirección vivienda</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="txtViviendaDireccion" placeholder="Dirección" [(ngModel)]="vivienda.Direccion">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="form-group m-1 p-1 justify-content-center d-flex">
+                            <button class="btn btn-success" (click)="crear_nueva_vivienda()">Guardar</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div *ngIf="isAdmin" class="row justify-content-center">
+                <button class="btn btn-danger m-1" (click)="eliminar_persona()">
+                    Eliminar Persona <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+            </div>
+
+        </div>
+
+
+
+
+        <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+        </app-no-hay-datos>
+    </div>
+
+    <app-loading [mostrar]="cargandoDatosPersonales">
+    </app-loading>

@@ -7,13 +7,12 @@ import { Injectable } from '@angular/core';
 })
 export class NavbarService {
 
-  visible: boolean;
+  visible: boolean = true;
  
 
-  constructor(
-
-  ) { this.visible = true; 
-
+  constructor(  ) 
+  { 
+    this.visible = true; 
   }
 
   hide() { this.visible = false; }

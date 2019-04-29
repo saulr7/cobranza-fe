@@ -1,0 +1,266 @@
+<app-titulo class="d-print-none" [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 ">
+
+
+            <div class="card m-2">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div>Datos generales:</div>
+                        <div>
+                            <app-estado-factura class="d-print-none" [facturaPagada]="factura.FechaPago" [Pagada]="factura.Pagada" [Anulada]="factura.Anulada" [FechaAnulada]="factura.FechaAnulada">
+                            </app-estado-factura>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="list-group list-group-flush">
+
+                    <div class="row p-2">
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Nombres:</div>
+                                    <div> {{factura.vivienda.persona.Nombre}} </div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Apellidos:</div>
+                                    <div> {{factura.vivienda.persona.Apellido}} </div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>NoIdentidad:</div>
+                                    <div>{{factura.vivienda.persona.NoIdentidad}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Correo:</div>
+                                    <div>{{factura.vivienda.persona.Correo}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Descripción:</div>
+                                    <div>{{factura.vivienda.Descripcion}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Dirección:</div>
+                                    <div>{{factura.vivienda.Direccion}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Periodo:</div>
+                                    <div>{{factura.Anio}} - {{factura.Mes | nombreMes}} </div>
+                                </div>
+                            </li>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Fecha generada:</div>
+                                    <div>{{factura.createdAt | date:'mediumDate' }}</div>
+                                </div>
+                            </li>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Fecha Vence:</div>
+                                    <div>{{factura.FechaVence | date:'mediumDate' }}</div>
+                                </div>
+                            </li>
+
+                        </div>
+
+
+
+                        <div *ngIf="factura.FechaPago" class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Fecha Pagada:</div>
+                                    <div>{{factura.FechaPago | date:'mediumDate' }}</div>
+                                </div>
+                            </li>
+
+                        </div>
+
+                    </div>
+                </ul>
+            </div>
+
+            <div *ngIf="factura.cajero" class="card m-2">
+                <div class="card-header">
+                    Cajero:
+                </div>
+
+                <ul class="list-group list-group-flush">
+
+                    <div class="row p-2">
+
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Nombre:</div>
+                                    <div>{{factura.cajero.Nombre }} </div>
+                                </div>
+                            </li>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Apellidos:</div>
+                                    <div>{{factura.cajero.Apellido }}</div>
+                                </div>
+                            </li>
+
+                        </div>
+
+                    </div>
+
+                </ul>
+            </div>
+
+
+            <div class="card m-2">
+                <div class="card-header">
+                    Detalle facturación:
+                </div>
+
+                <ul class="list-group list-group-flush">
+
+                    <div class="row p-2">
+
+
+                        <div class="col-sm-12 col-md-6 " *ngFor="let detalle of factura.factura_detalles">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>{{detalle.servicio.Descripcion}}:</div>
+                                    <div>{{detalle.valor }}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                    </div>
+                </ul>
+            </div>
+
+
+
+
+
+            <div class="card m-2">
+                <div class="card-header">
+                    Totales:
+                </div>
+
+                <ul class="list-group list-group-flush">
+
+                    <div class="row p-2">
+
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>ISV:</div>
+                                    <div>{{factura.ISV}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Otros:</div>
+                                    <div>{{factura.Otros}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Otros Cargos:</div>
+                                    <div>{{factura.OtrosCargos}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>SubTotal:</div>
+                                    <div>{{factura.SubTotal}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+                            <li class="list-group-item border">
+                                <div class="d-flex justify-content-between">
+                                    <div>Total:</div>
+                                    <div class="font-weight-bold">{{factura.Total}}</div>
+                                </div>
+                            </li>
+                        </div>
+
+                    </div>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div *ngIf="mostrarBtnPagar" class="row justify-content-center m-3 d-print-none">
+        <button type="button" class="btn btn-success" (click)="pagar_factura()">Facturar</button>
+    </div>
+
+    <div *ngIf="isAdmin && factura.Pagada" class="row justify-content-center m-3 d-print-none">
+        <button type="button" class="btn btn-success" (click)="imprimir_factura()">Imprimir</button>
+    </div>
+
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

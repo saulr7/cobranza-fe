@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 
 import { HttpClient, HttpHeaders, HttpParams } from  '@angular/common/http';
 import {IMotivosSalida} from '../../models/motivosSalida/MotivosSalida';
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 import { environment } from 'src/environments/environment.prod';
 import {IUsuario} from '../../models/login/Usuario';
 import {INuevaSolicitud} from '../../models/solicitudes/NuevaSolicitud';

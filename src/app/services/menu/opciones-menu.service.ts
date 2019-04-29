@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from  '@angular/common/http';
-import {LoginService} from '../login/login.service';
-import { environment } from 'src/environments/environment.prod';
+import {LoginService} from '../login.service';
 import {IAccesos} from '../../models/menu/accesos';
 
 @Injectable({

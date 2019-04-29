@@ -1,0 +1,117 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+    <div class="row justify-content-center m-2">
+
+        <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+        </app-no-hay-datos>
+    </div>
+
+    <div class="row justify-content-center m-2" *ngIf="hayDatosParaMostrar">
+
+        <div class="col-12 col-md-8 col-lg-7">
+
+            <div class="row">
+                <h3>General:</h3>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Direccion</th>
+                            <th class="d-none d-lg-block">Fecha Agregado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let servicio of ServicosVivienda; let i = index"> -->
+                        <td>{{Vivienda.Descripcion}}</td>
+                        <td>{{Vivienda.Direccion }}</td>
+                        <td class="d-none d-lg-block">{{Vivienda.createdAt | date:'medium' }}</td>
+                        <td>
+                            <button class="btn btn-info">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                        <!-- </tr> -->
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="row">
+                <h3>Servicios:</h3>
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Valor</th>
+                            <th class="d-none d-lg-block">Fecha Agregado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let servicio of ServicosVivienda; let i = index">
+                            <td>{{servicio.servicio.Descripcion}}</td>
+                            <td>{{servicio.servicio.Valor }}</td>
+                            <td class="d-none d-lg-block">{{servicio.servicio.createdAt | date:'medium' }}</td>
+                            <td>
+                                <button class="btn btn-danger" (click)="eliminar_servicio_vivienda(servicio.id)">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="col-12">
+
+            <div class="row justify-content-center p-2 mb-2">
+
+                <div class="col-3 text-center">
+                    <button *ngIf="!agregarNuevoServicio" class="btn btn-primary" (click)="agregarNuevoServicio = true">
+                     Agregar servicio <i class="fa fa-plus"></i>
+                  </button>
+                    <button *ngIf="agregarNuevoServicio" class="btn btn-danger" (click)="agregarNuevoServicio = false">
+                     Cancelar <i class="fa fa-times"></i>
+                  </button>
+                </div>
+            </div>
+
+
+            <div *ngIf="agregarNuevoServicio" class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div class="form-group row">
+                        <label class="col-sm-2 " for="cmbSexo">Servicio</label>
+                        <div class="col-sm-10">
+                            <select class="custom-select" [(ngModel)]="nuevoServicio.id" id="cmbSexo">
+                            <option *ngFor="let Servicio of Servicos" value="{{Servicio.id}}">{{Servicio.Descripcion}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div *ngIf="agregarNuevoServicio" class="row justify-content-center">
+                <div class="form-group m-1 p-1 justify-content-center d-flex">
+                    <button class="btn btn-success" (click)="crear_vivienda_servicio()">Guardar</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

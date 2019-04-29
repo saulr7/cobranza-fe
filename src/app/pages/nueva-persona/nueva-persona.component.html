@@ -1,0 +1,126 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="fluid-container">
+
+    <div class="row p-1 m-2 justify-content-center">
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtNombre">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtNombre" placeholder="Nombre" [(ngModel)]="persona.Nombre">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtApellido">Apellido</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtApellido" placeholder="Apellido" [(ngModel)]="persona.Apellido">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtNoIdentidad">NoIdentidad</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtNoIdentidad" placeholder="NoIdentidad" [(ngModel)]="persona.NoIdentidad">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtCelular">Celular</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtCelular" placeholder="Celular" [(ngModel)]="persona.Celular">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtTelefono">Telefono</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtTelefono" placeholder="Telefono" [(ngModel)]="persona.Telefono">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtDireccion">Dirección</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtDireccion" placeholder="Direccion" [(ngModel)]="persona.Direccion">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtCorreo">Correo</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="txtCorreo" placeholder="Correo" [(ngModel)]="persona.Correo">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="cmbSexo">Sexo</label>
+                <div class="col-sm-10">
+                    <select class="custom-select" [(ngModel)]="persona.Sexo" id="cmbSexo">
+                      <option value="M">Masculino</option>
+                      <option value="F">Femenino</option>
+                  </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+                <strong>Atención!</strong> Los datos de la descripción y dirección de la vivienda son indispensables para generar la factura.
+            </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtViviendaDescripcion">Descripción vivienda</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtViviendaDescripcion" placeholder="Descripción" [(ngModel)]="vivienda.Descripcion">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-5">
+            <div class="form-group row">
+                <label class="col-sm-2 " for="txtViviendaDireccion">Dirección vivienda</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtViviendaDireccion" placeholder="Dirección" [(ngModel)]="vivienda.Direccion">
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <div class="row justify-content-center">
+        <button type="button" class="btn btn-success" (click)="crear_persona()">Guardar</button>
+    </div>
+
+
+</div>
+
+<app-loading [mostrar]="cargando">
+</app-loading>

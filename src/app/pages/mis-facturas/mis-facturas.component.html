@@ -1,0 +1,54 @@
+<app-titulo [titulo]="Titulo">
+</app-titulo>
+
+<div class="container">
+
+    <app-no-hay-datos [noHayDatosParaMostar]="!hayDatosParaMostrar">
+    </app-no-hay-datos>
+
+
+    <div style="overflow-x:auto;">
+
+
+        <div class="row justify-content-center" *ngIf="hayDatosParaMostrar">
+            <div class="col-12 col-lg-10">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Año</th>
+                            <th>Mes</th>
+                            <th>Fecha generada</th>
+                            <th>Estado</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr [ngClass]="{'bg-light': ! (i % 2) }" *ngFor="let factura of facturasPendientes; let i = index">
+                            <td>{{factura.Anio}}</td>
+                            <td>{{factura.Mes | nombreMes }}</td>
+                            <td> {{factura.createdAt | date:'short' }} </td>
+                            <td>
+                                <app-estado-factura [FechaPago]="factura.FechaPago" [Pagada]="factura.Pagada" [Anulada]="factura.Anulada" [FechaAnulada]="factura.FechaAnulada">
+                                </app-estado-factura>
+                            </td>
+                            <td> {{factura.Total }} </td>
+                            <td>
+                                <button class="btn btn-info m-1" style="min-width:105px" routerLink="/verFactura/{{factura.id}}">
+                                  Ver <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<app-loading [mostrar]="cargando">
+</app-loading>

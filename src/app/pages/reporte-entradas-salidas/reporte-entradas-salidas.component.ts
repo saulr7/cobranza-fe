@@ -4,7 +4,7 @@ import {EmpleadosService} from '../../services/empleados/empleados.service';
 import {ISolicitud} from '../../models/solicitudes/solicitud';
 import Swal from 'sweetalert2';
 import {EstadosObj} from '../../models/solicitudes/estadosObject';
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-reporte-entradas-salidas',

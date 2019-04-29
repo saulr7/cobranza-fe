@@ -1,6 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import Swal from 'sweetalert2'
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 import {ILogin} from '../../models/login/ILogin';
 import {Router} from '@angular/router';
 import {NavbarService} from '../../services/navbar/navbar.service';
@@ -21,9 +21,9 @@ export class LoginComponent implements OnInit {
   pantallas = [];
 
   constructor(
-      private loginService : LoginService
-    , private router : Router
-    , private navBar : NavbarService
+      private loginService : LoginService,
+      private router : Router,
+      private navBar : NavbarService
   ) { }
 
   ngOnInit() 
@@ -55,22 +55,34 @@ export class LoginComponent implements OnInit {
         var token = JSON.stringify(response)
         localStorage.setItem("token", token)
         
-        var payload = this.loginService.TokenPayload()
-        var pantallasUsuario =  payload.Pantallas
-        localStorage.setItem("menu", pantallasUsuario )
-        localStorage.setItem("usuario", payload.Nombre) 
+        var data = this.loginService.TokenPayload()
+        console.log(data);
+        var pantallasUsuario =  data.payload.pantallas
+        localStorage.setItem("menu", JSON.stringify( pantallasUsuario) )
+        localStorage.setItem("usuario", data.payload.nombre) 
+
 
         this.navBar.show();
-        if(payload.PerfilId == 3)
-          this.router.navigate(["/marcarEntradaSalida"]);
-        else
-          this.router.navigate(["/misSolicitudes"]);
+
+        if(data.payload.tipoUsuarioId == 1)
+          this.router.navigate(["/personas"]);
+        
+        if(data.payload.tipoUsuarioId == 2)
+          this.router.navigate(["/anuncios"]);
+
+        if(data.payload.tipoUsuarioId == 3)
+          this.router.navigate(["/visitas"]);
+
+        // else
+        //   this.router.navigate(["/anuncios"]);
+
         this.cargando =false;
         this.btnGuardarEnable = true;
         
   
       }).catch((response)=>
       {
+        console.log(response);
         var mensajeError = (response.error.Message == undefined ?  response.message : response.error.Message)
         Swal("No se ha podido iniciar sesión," + mensajeError,"Error",'error') 
         this.cargando =false;

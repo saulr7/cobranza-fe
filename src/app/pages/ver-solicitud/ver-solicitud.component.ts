@@ -5,7 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {EstadoSolicitud} from '../../models/solicitudes/estados';
 import {EmpleadosService} from '../../services/empleados/empleados.service';
 import {IEmpleado} from '../../models/empleados/empleado';
-import {LoginService} from '../../services/login/login.service';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-ver-solicitud',

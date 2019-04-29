@@ -27,6 +27,25 @@ import { MantenimientoEmpleadosComponent } from './pages/mantenimiento-empleados
 import { MantenimientoEmpleadosAreaComponent } from './pages/mantenimiento-empleados-area/mantenimiento-empleados-area.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CrearPaseRecurrenteComponent } from './pages/crear-pase-recurrente/crear-pase-recurrente.component';
+import { PersonasComponent } from './pages/personas/personas.component';
+import { NuevaPersonaComponent } from './pages/nueva-persona/nueva-persona.component';
+import { FormaDePagoComponent } from './pages/forma-de-pago/forma-de-pago.component';
+import { FacturasPendientesComponent } from './pages/facturas-pendientes/facturas-pendientes.component';
+// import { PagarFacturaComponent } from './pages/pagar-factura/pagar-factura.component';
+import { MisFacturasComponent } from './pages/mis-facturas/mis-facturas.component';
+import { VerFacturaComponent } from './pages/ver-factura/ver-factura.component';
+import { VisitasComponent } from './pages/visitas/visitas.component';
+import { MisVisitasComponent } from './pages/mis-visitas/mis-visitas.component';
+import { NuevoAnuncioComponent } from './pages/nuevo-anuncio/nuevo-anuncio.component';
+import { AnunciosComponent } from './pages/anuncios/anuncios.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import {NombreMesPipe} from '../app/pipes/NombreMes/nombre-mes.pipe';
+import { FacturasComponent } from './pages/facturas/facturas.component';
+import { FacturasPeriodoComponent } from './pages/facturas-periodo/facturas-periodo.component';
+import { EstadoFacturaComponent } from './common/estado-factura/estado-factura.component';
+import { ServiciosComponent } from './pages/servicios/servicios.component';
+import { VerViviendaComponent } from './pages/ver-vivienda/ver-vivienda.component';
+import { PersonaComponent } from './pages/persona/persona.component';
 
 
 
@@ -51,7 +70,25 @@ import { CrearPaseRecurrenteComponent } from './pages/crear-pase-recurrente/crea
     MantenimientoEmpleadosComponent,
     MantenimientoEmpleadosAreaComponent,
     NotFoundComponent,
-    CrearPaseRecurrenteComponent
+    CrearPaseRecurrenteComponent,
+    PersonasComponent,
+    NuevaPersonaComponent,
+    FormaDePagoComponent,
+    FacturasPendientesComponent,
+    // PagarFacturaComponent,
+    MisFacturasComponent,
+    VerFacturaComponent,
+    VisitasComponent,
+    MisVisitasComponent,
+    NuevoAnuncioComponent,
+    AnunciosComponent,
+    NombreMesPipe,
+    FacturasComponent,
+    FacturasPeriodoComponent,
+    EstadoFacturaComponent,
+    ServiciosComponent,
+    VerViviendaComponent,
+    PersonaComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +96,8 @@ import { CrearPaseRecurrenteComponent } from './pages/crear-pase-recurrente/crea
     FormsModule,
     HttpClientModule,
     NgbModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    AngularEditorModule
   ],
   providers: [
     NavbarComponent],
