@@ -80,11 +80,11 @@ export class LoginComponent implements OnInit {
         this.btnGuardarEnable = true;
         
   
-      }).catch((response)=>
+      }).catch((err)=>
       {
-        console.log(response);
-        var mensajeError = (response.error.Message == undefined ?  response.message : response.error.Message)
-        Swal("No se ha podido iniciar sesión," + mensajeError,"Error",'error') 
+        console.log(err.error.message.message);
+        var mensajeError = (err.error.message.message == undefined ?  err.message : err.error.message.message)
+        Swal("No se ha podido iniciar sesión, " + mensajeError,"Error",'error') 
         this.cargando =false;
         this.btnGuardarEnable = true;
         var btnEntrar = document.getElementById('btnEntrar')

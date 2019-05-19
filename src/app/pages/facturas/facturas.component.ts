@@ -51,9 +51,6 @@ export class FacturasComponent implements OnInit {
     
     for (let i = 1; i < 3; i++) {
       this.Anios.push(Anio- i)
-      
-
-     
 
     }
 

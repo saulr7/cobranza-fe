@@ -62,6 +62,24 @@ export class FacturasService {
     return this.http.get <IFactura[]> (environment.baseURL + "/factura/ByPeriodo/"+Anio +"/"+Mes, {headers : this.headers}  ).toPromise()
   }
 
+  facturas_pagadas_byFecha(desde, hasta)
+  {
+    return this.http.get <IFactura[]> (environment.baseURL + "/factura/pagadas/"+desde +"/"+hasta, {headers : this.headers}  ).toPromise()
+
+  }
+
+  facturas_sinPagar_byFecha(desde, hasta)
+  {
+    return this.http.get <IFactura[]> (environment.baseURL + "/factura/sinPagar/"+desde +"/"+hasta, {headers : this.headers}  ).toPromise()
+
+  }
+
+  facturas_todas_byFecha(desde, hasta)
+  {
+    return this.http.get <IFactura[]> (environment.baseURL + "/factura/todas/"+desde +"/"+hasta, {headers : this.headers}  ).toPromise()
+
+  }
+  
 
   es_factura_pagada(FechaPago, Pagada, Anulada, FechaAnulada): boolean
   {

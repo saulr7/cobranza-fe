@@ -38,6 +38,12 @@ import { FacturasPeriodoComponent } from './pages/facturas-periodo/facturas-peri
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { VerViviendaComponent } from './pages/ver-vivienda/ver-vivienda.component';
 import { PersonaComponent } from './pages/persona/persona.component';
+import { EnviarCorreoComponent } from './pages/enviar-correo/enviar-correo.component';
+import { ReportesComponent } from './pages/reportes/reportes.component';
+import { FacturadasHoyComponent } from './pages/facturadas-hoy/facturadas-hoy.component';
+import { FacturasPagadasComponent } from './pages/facturas-pagadas/facturas-pagadas.component';
+import { FacturasSinPagarComponent } from './pages/facturas-sin-pagar/facturas-sin-pagar.component';
+import { FacturasTodasComponent } from './pages/facturas-todas/facturas-todas.component';
 
 const routes: Routes = [
   {path : 'login', component : LoginComponent},
@@ -71,6 +77,22 @@ const routes: Routes = [
   {path : 'anuncios', component : AnunciosComponent, canActivate : [AuthService]},
   {path : 'servicios', component : ServiciosComponent, canActivate : [AuthService]},
   {path : 'verVivienda/:viviendaId', component : VerViviendaComponent, canActivate : [AuthService]},
+  {path : 'enviarCorreo', component : EnviarCorreoComponent, canActivate : [AuthService]},
+  {path : 'reportes', component : ReportesComponent, canActivate : [AuthService],
+   children : [
+    {
+      path : '', component : FacturasTodasComponent
+    },
+    {
+      path : 'facturasPagadas', component : FacturasPagadasComponent
+    },
+    {
+      path : 'facturasPendiente', component : FacturasSinPagarComponent
+    },
+    {
+      path : 'facturasTodas', component : FacturasTodasComponent
+    }
+  ] },
 
   {path : '**', component :  NotFoundComponent ,  canActivate  : [AuthService] }
 

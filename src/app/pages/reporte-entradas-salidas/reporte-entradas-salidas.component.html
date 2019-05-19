@@ -1,80 +1,78 @@
 <app-titulo [titulo]="Titulo">
-</app-titulo> 
+</app-titulo>
 
 <div class="container">
 
-  <div class="row justify-content-center text-center ">
-      <div class="col-5">
-        <button *ngIf="mostarFiltroFechas" class="btn btn-danger" (click)="mostarFiltroFechas = !mostarFiltroFechas" >
+    <div class="row justify-content-center text-center ">
+        <div class="col-5">
+            <button *ngIf="mostarFiltroFechas" class="btn btn-danger" (click)="mostarFiltroFechas = !mostarFiltroFechas">
           Filtros <i class="fa fa-eye-slash"></i>
         </button>
-        <button *ngIf="!mostarFiltroFechas" class="btn btn-info" (click)="mostarFiltroFechas = !mostarFiltroFechas">
+            <button *ngIf="!mostarFiltroFechas" class="btn btn-info" (click)="mostarFiltroFechas = !mostarFiltroFechas">
           Filtros  <i class="fa fa-filter"></i>
         </button>
-      </div>
-  </div>
-
-  <div *ngIf="mostarFiltroFechas">
-    <div  class="row justify-content-center">
-        <div class="p-1 m-1">
-          Desde:
-          <form class="form-inline">
-            <div class="form-group">
-              <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="d1" #c2="ngModel" [(ngModel)]="fechaDesde" ngbDatepicker #d1="ngbDatepicker">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
-                      <i class="fa fa-calendar"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        
-        <div class="p-1 m-1">
-          Hasta:
-          <form class="form-inline">
-            <div class="form-group">
-              <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                        name="d2" #c2="ngModel" [(ngModel)]="fechaHasta" ngbDatepicker #d2="ngbDatepicker">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button">
-                      <i class="fa fa-calendar"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
         </div>
     </div>
-  
-    <div *ngIf="!esUsuarioAdminArea" class="row justify-content-center">
-        <div class="col-10 col-md-5 col-lg-3 flex-column ">
-            <h5 class="text-center">Area: </h5>
-            <select class="custom-select mt-3" [(ngModel)]="areaSelected"  >
+
+    <div *ngIf="mostarFiltroFechas">
+        <div class="row justify-content-center">
+            <div class="p-1 m-1">
+                Desde:
+                <form class="form-inline">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="d1" #c2="ngModel" [(ngModel)]="fechaDesde" ngbDatepicker #d1="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+                      <i class="fa fa-calendar"></i>
+                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="p-1 m-1">
+                Hasta:
+                <form class="form-inline">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="d2" #c2="ngModel" [(ngModel)]="fechaHasta" ngbDatepicker #d2="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button">
+                      <i class="fa fa-calendar"></i>
+                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div *ngIf="!esUsuarioAdminArea" class="row justify-content-center">
+            <div class="col-10 col-md-5 col-lg-3 flex-column ">
+                <h5 class="text-center">Area: </h5>
+                <select class="custom-select mt-3" [(ngModel)]="areaSelected">
                 <option value="-1">Seleccionar área</option>
                 <option [value]="area.Id"  *ngFor="let area of areas; let i = index">{{area.Descripcion}}</option>
             </select>
-        </div>  
-    </div>
+            </div>
+        </div>
 
-    <app-loading [mostrar]="cargandoAreas">
-    </app-loading>
+        <app-loading [mostrar]="cargandoAreas">
+        </app-loading>
 
-    <div class="row justify-content-center p-2 m-2">
-        <div>
-            <button class="btn btn-success" (click)="obtener_solicitudes()" >
+        <div class="row justify-content-center p-2 m-2">
+            <div>
+                <button class="btn btn-success" (click)="obtener_solicitudes()">
               Cargar Datos
             </button>
+            </div>
         </div>
     </div>
-  </div>
 
 
-    
+
 
 </div>
 
@@ -82,99 +80,99 @@
 </app-no-hay-datos>
 
 <div *ngIf="hayDatosParaMostrar" style="overflow-x:auto;" class="px-2 mx-2">
-  
-  <div class="row justify-content-end">
-      <div class="col-6 col-md-4">
-          
-        <button class="btn btn-link" *ngIf="!mostrarBtnsFiltrarGrid" (click)="mostrarBtnsFiltrarGrid = true">
+
+    <div class="row justify-content-end">
+        <div class="col-6 col-md-4">
+
+            <button class="btn btn-link" *ngIf="!mostrarBtnsFiltrarGrid" (click)="mostrarBtnsFiltrarGrid = true">
               <i class="fa fa-search"></i>
           </button>
-          
-          <button class="btn btn-link text-danger" *ngIf="mostrarBtnsFiltrarGrid" (click)="mostrarBtnsFiltrarGrid = false">
+
+            <button class="btn btn-link text-danger" *ngIf="mostrarBtnsFiltrarGrid" (click)="mostrarBtnsFiltrarGrid = false">
               <i class="fa fa-times"></i>
           </button>
 
-          <div class="btn-group" role="group">
-              <button id="btnGroupDrop1" type="button"
-                      class="btn btn-link "
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-link " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-ellipsis-v"></i> 
               </button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <span>Columnas</span>
-                  <div class="form-check form-check-inline dropdown-item" >
-                      <input class="form-check-input" type="checkbox" id="chkArea" [(ngModel)]="mostrarClmArea" >
-                      <label class="form-check-label" for="chkArea">Área</label>
-                  </div>
-                  <div class="form-check form-check-inline dropdown-item">
-                    <input class="form-check-input" type="checkbox" id="chkMotivo" [(ngModel)]="mostrarClmMotivo" >
-                    <label class="form-check-label" for="chkMotivo">Motivo</label>
-                  </div>
-                  <div class="form-check form-check-inline dropdown-item">
-                      <input class="form-check-input" type="checkbox" id="chkPuesto" [(ngModel)]="mostrarClmPuesto" >
-                      <label class="form-check-label" for="chkPuesto">Puesto</label>
-                  </div>   
-                  <div class="form-check form-check-inline dropdown-item">
-                      <input class="form-check-input" type="checkbox" id="chkAutoriza" [(ngModel)]="mostrarClmAutoriza" >
-                      <label class="form-check-label" for="chkAutoriza">Autoriza</label>
-                  </div>                  
-                    
-              </div>
-          </div>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <span>Columnas</span>
+                    <div class="form-check form-check-inline dropdown-item">
+                        <input class="form-check-input" type="checkbox" id="chkArea" [(ngModel)]="mostrarClmArea">
+                        <label class="form-check-label" for="chkArea">Área</label>
+                    </div>
+                    <div class="form-check form-check-inline dropdown-item">
+                        <input class="form-check-input" type="checkbox" id="chkMotivo" [(ngModel)]="mostrarClmMotivo">
+                        <label class="form-check-label" for="chkMotivo">Motivo</label>
+                    </div>
+                    <div class="form-check form-check-inline dropdown-item">
+                        <input class="form-check-input" type="checkbox" id="chkPuesto" [(ngModel)]="mostrarClmPuesto">
+                        <label class="form-check-label" for="chkPuesto">Puesto</label>
+                    </div>
+                    <div class="form-check form-check-inline dropdown-item">
+                        <input class="form-check-input" type="checkbox" id="chkAutoriza" [(ngModel)]="mostrarClmAutoriza">
+                        <label class="form-check-label" for="chkAutoriza">Autoriza</label>
+                    </div>
 
-          <button class="btn text-success" (click)="exportTableToExcel('tblReporte')">
+                </div>
+            </div>
+
+            <button class="btn text-success" (click)="exportTableToExcel('tblReporte')">
               <i class="fa fa-download fa-2x"></i>
           </button>
-      </div>
-  </div>
+        </div>
+    </div>
 
-    <table class="table table-md-responsive" id="tblReporte" >
+    <table class="table table-md-responsive" id="tblReporte">
         <thead>
-          <tr>
-            <th>Código                  </th>
-            <th>Solicitante             </th>
-            <th>Fecha                   </th>
-            <th>Estado                  </th>
-            <th>Hora Salida             </th>
-            <th>Hora Entrada            </th>
-            <th *ngIf="mostrarClmArea">Área      </th>
-            <th *ngIf="mostrarClmMotivo">Motivo  </th>
-            <th *ngIf="mostrarClmPuesto">Puesto  </th>
-            <th *ngIf="mostrarClmAutoriza" >Autoriza                 </th>
-            <th>Acciones                 </th>
-          </tr>
+            <tr>
+                <th>Código </th>
+                <th>Solicitante </th>
+                <th>Fecha </th>
+                <th>Estado </th>
+                <th>Hora Salida </th>
+                <th>Hora Entrada </th>
+                <th *ngIf="mostrarClmArea">Área </th>
+                <th *ngIf="mostrarClmMotivo">Motivo </th>
+                <th *ngIf="mostrarClmPuesto">Puesto </th>
+                <th *ngIf="mostrarClmAutoriza">Autoriza </th>
+                <th>Acciones </th>
+            </tr>
         </thead>
         <tbody>
-          <tr *ngIf="mostrarBtnsFiltrarGrid">
-            <td>
-                <input class="form-control" type="text" placeholder="Código" (keyup)="filtrar_datos($event)" [(ngModel)]="txtcodigo">
-            </td>
-            <td colspan="2">
-                <input class="form-control" type="text" placeholder="Nombre" (keyup)="filtrar_datos($event)" [(ngModel)]="txtNombre">
-            </td>
-            <td colspan="2">
-                <select class="custom-select" [(ngModel)]="estadoSeleccionado" (change)="filtrar_datos($event)">
+            <tr *ngIf="mostrarBtnsFiltrarGrid">
+                <td>
+                    <input class="form-control" type="text" placeholder="Código" (keyup)="filtrar_datos($event)" [(ngModel)]="txtcodigo">
+                </td>
+                <td colspan="2">
+                    <input class="form-control" type="text" placeholder="Nombre" (keyup)="filtrar_datos($event)" [(ngModel)]="txtNombre">
+                </td>
+                <td colspan="2">
+                    <select class="custom-select" [(ngModel)]="estadoSeleccionado" (change)="filtrar_datos($event)">
                     <option value="{{estado.valor}}" *ngFor="let estado of estados" > {{estado.Descripcion}} </option>
-                </select>                 
-            </td>
-          </tr>
-          <tr *ngFor="let solicitud of solicitudes; let i = index;"   [ngClass]="{'bg-light': !(i % 2) }" >
-            <td>  {{solicitud.UsuarioSolicitanteId}}                </td>
-            <td>  {{solicitud.UsuarioSolicitante}}      </td>
-            <td>  {{solicitud.FechaCreado | date:'short'}}           </td>
-            <td>   <app-estado-solicitud [estadoId]="solicitud.EstadoId">  </app-estado-solicitud>  </td>
-            <td>  {{solicitud.HoraSalidaMarca | date:'shortTime'}}         </td>
-            <td>  {{solicitud.HoraEntradaMarca | date:'shortTime' }}        </td>
-            <td *ngIf="mostrarClmArea">  {{solicitud.AreaSolicitante}}         </td>
-            <td *ngIf="mostrarClmMotivo" >  {{solicitud.MotivoSalida}} <span *ngIf="solicitud.Observaciones">: {{ solicitud.Observaciones}} </span>     </td>
-            <td *ngIf="mostrarClmPuesto" >  {{solicitud.PuestoSolicitante}}       </td>
-            <td *ngIf="mostrarClmAutoriza"  >  {{solicitud.UsuarioAutoriza}}         </td> 
-            <td> <button class="btn btn-info m-1" routerLink="/verSolicitud/{{solicitud.Id}}">     <i class="fa fa-info-circle"></i>     </button>  
-            </td> 
-          </tr>
+                </select>
+                </td>
+            </tr>
+            <tr *ngFor="let solicitud of solicitudes; let i = index;" [ngClass]="{'bg-light': !(i % 2) }">
+                <td> {{solicitud.UsuarioSolicitanteId}} </td>
+                <td> {{solicitud.UsuarioSolicitante}} </td>
+                <td> {{solicitud.FechaCreado | date:'short'}} </td>
+                <td>
+                    <app-estado-solicitud [estadoId]="solicitud.EstadoId"> </app-estado-solicitud>
+                </td>
+                <td> {{solicitud.HoraSalidaMarca | date:'shortTime'}} </td>
+                <td> {{solicitud.HoraEntradaMarca | date:'shortTime' }} </td>
+                <td *ngIf="mostrarClmArea"> {{solicitud.AreaSolicitante}} </td>
+                <td *ngIf="mostrarClmMotivo"> {{solicitud.MotivoSalida}} <span *ngIf="solicitud.Observaciones">: {{ solicitud.Observaciones}} </span> </td>
+                <td *ngIf="mostrarClmPuesto"> {{solicitud.PuestoSolicitante}} </td>
+                <td *ngIf="mostrarClmAutoriza"> {{solicitud.UsuarioAutoriza}} </td>
+                <td> <button class="btn btn-info m-1" routerLink="/verSolicitud/{{solicitud.Id}}">     <i class="fa fa-info-circle"></i>     </button>
+                </td>
+            </tr>
         </tbody>
-      </table>
-  </div>
-  
-  <app-loading [mostrar]="cargandoSolicitudes">
-  </app-loading>
+    </table>
+</div>
+
+<app-loading [mostrar]="cargandoSolicitudes">
+</app-loading>

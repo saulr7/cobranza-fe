@@ -46,6 +46,12 @@ import { EstadoFacturaComponent } from './common/estado-factura/estado-factura.c
 import { ServiciosComponent } from './pages/servicios/servicios.component';
 import { VerViviendaComponent } from './pages/ver-vivienda/ver-vivienda.component';
 import { PersonaComponent } from './pages/persona/persona.component';
+import { EnviarCorreoComponent } from './pages/enviar-correo/enviar-correo.component';
+import { ReportesComponent } from './pages/reportes/reportes.component';
+import { FacturadasHoyComponent } from './pages/facturadas-hoy/facturadas-hoy.component';
+import { FacturasPagadasComponent } from './pages/facturas-pagadas/facturas-pagadas.component';
+import { FacturasSinPagarComponent } from './pages/facturas-sin-pagar/facturas-sin-pagar.component';
+import { FacturasTodasComponent } from './pages/facturas-todas/facturas-todas.component';
 
 
 
@@ -89,6 +95,12 @@ import { PersonaComponent } from './pages/persona/persona.component';
     ServiciosComponent,
     VerViviendaComponent,
     PersonaComponent,
+    EnviarCorreoComponent,
+    ReportesComponent,
+    FacturadasHoyComponent, 
+    FacturasPagadasComponent,
+    FacturasSinPagarComponent,
+    FacturasTodasComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-anuncio',
-  templateUrl: './nuevo-anuncio.component.html',
-  styleUrls: ['./nuevo-anuncio.component.css']
+  templateUrl: './nuevo-anuncio.component.html'
 })
 export class NuevoAnuncioComponent implements OnInit {
 

@@ -1,0 +1,29 @@
+<div class="container-fluid">
+
+
+    <div class="row ">
+
+        <div class="col">
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['facturasPagadas']">Facturas pagadas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['facturasPendiente']">Facturas pendientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['facturasTodas']">Todas</a>
+                </li>
+            </ul>
+
+
+
+            <router-outlet></router-outlet>
+
+        </div>
+
+    </div>
+
+    <app-loading [mostrar]="cargando">
+    </app-loading>
